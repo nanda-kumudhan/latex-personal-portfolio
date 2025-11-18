@@ -27,7 +27,7 @@ This is a placeholder for the about page. You can add your own content here.
 - Docker
 `
 
-export default function About({ children }: ComponentProps) {
+export default function About() {
    return (
     <main className="flex min-h-screen flex-col items-center p-24">
         <ReactMarkdown
