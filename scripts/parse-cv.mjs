@@ -14,7 +14,7 @@ const stringifyLatex = (nodes) => {
   return nodes.map(n => (n.content ?? n.text ?? '')).join('').trim();
 };
 
-const cvFilePath = path.join(process.cwd(), 'data', 'cv.tex');
+const cvFilePath = path.join(process.cwd(), 'data', 'cv', 'cv.tex');
 const outputFilePath = path.join(process.cwd(), 'data', 'portfolio-data.json');
 
 async function parseCv() {
