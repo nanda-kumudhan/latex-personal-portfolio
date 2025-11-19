@@ -1,6 +1,16 @@
-import { createTheme } from '@mui/material/styles';
+// Radix UI Theme Configuration
+// Uses the predefined Radix theme system with dark mode
 
-// Central glass tokens for reuse
+export const radixThemeConfig = {
+  appearance: 'dark',
+  accentColor: 'cyan',
+  grayColor: 'slate',
+  panelBackground: 'solid',
+  scaling: '100%' as const,
+  radius: 'medium' as const,
+} as const;
+
+// Glass effect tokens for custom styling
 export const glassTokens = {
   baseBg: 'rgba(20,24,40,0.6)',
   heroGradient: 'linear-gradient(135deg, rgba(10,25,50,0.7) 0%, rgba(25,40,70,0.65) 100%)',
@@ -13,34 +23,14 @@ export const glassTokens = {
   blurStrong: 'blur(18px)'
 };
 
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: { main: '#00d4ff' },
-    secondary: { main: '#ff006e' },
-    success: { main: '#10b981' },
-    warning: { main: '#f59e0b' },
-    background: {
-      default: '#0f1419',
-      paper: 'rgba(20,24,40,0.6)'
-    }
-  },
-  typography: {
-    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif'
-  },
-  components: {
-    MuiLink: {
-      styleOverrides: {
-        root: {
-          cursor: 'pointer',
-          position: 'relative',
-          textDecoration: 'none',
-          transition: 'color .3s ease',
-          fontWeight: 500
-        }
-      }
-    }
-  }
-});
-
-export default theme;
+// Color palette aligned with Radix UI
+export const colors = {
+  primary: '#00d4ff',
+  secondary: '#ff006e',
+  success: '#10b981',
+  warning: '#f59e0b',
+  background: '#0f1419',
+  surface: '#1a1a2e',
+  text: '#e0e0e0',
+  textSecondary: '#b0b0b0',
+} as const;

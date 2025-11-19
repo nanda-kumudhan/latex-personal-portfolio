@@ -1,17 +1,13 @@
 import Head from "next/head";
 import {
   Box,
-  Typography,
-  Stack,
-  IconButton,
-  Chip,
-  List,
-  ListItem,
-  ListItemText,
+  Flex,
+  Text,
+  Button,
+  Heading,
+  Badge,
   Grid,
-  Paper
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
+} from "@radix-ui/themes";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import Navbar from "../components/Navbar";
@@ -21,104 +17,8 @@ import GlassPanel from "../components/GlassPanel";
 // Import the generated JSON from parse-cv.mjs
 import portfolioData from "../data/portfolio-data.json";
 import { PortfolioData } from "../data/portfolio";
+import styles from "../styles/home.module.css";
 
-// ===== STYLED COMPONENTS =====
-// Deprecated individual glass boxes replaced with GlassPanel component.
-
-const ProjectPanel = styled(Paper)(({ theme }: any) => ({
-  background: 'rgba(25,25,30,0.55)',
-  backdropFilter: 'blur(14px)',
-  border: '1px solid rgba(255,255,255,0.08)',
-  borderRadius: 18,
-  padding: '1.25rem 1.1rem 1.1rem',
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100%',
-  boxShadow: '0 6px 24px rgba(0,0,0,0.5)',
-  transition: 'transform .35s ease, box-shadow .35s ease',
-  '&:hover': {
-    transform: 'translateY(-6px)',
-    boxShadow: '0 12px 42px rgba(0,0,0,0.6)'
-  }
-}));
-
-const SectionTitle = styled(Typography)(({ theme }: any) => ({
-  fontSize: "2.8rem",
-  marginBottom: "2rem",
-  textAlign: "center",
-  fontWeight: 600,
-  letterSpacing: "1px",
-  color: "#e0e0e0",
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "2rem",
-  },
-}));
-
-const ExperienceItem = styled(Paper)(({ theme }: any) => ({
-  background: 'rgba(25,25,30,0.55)',
-  backdropFilter: 'blur(12px)',
-  border: '1px solid rgba(255,255,255,0.08)',
-  borderRadius: 18,
-  padding: '1.75rem 1.5rem',
-  marginBottom: '1.5rem',
-  transition: 'transform .3s ease, box-shadow .3s ease',
-  boxShadow: '0 6px 24px rgba(0,0,0,0.45)',
-  '&:hover': {
-    transform: 'translateY(-5px)',
-    boxShadow: '0 12px 40px rgba(0,0,0,0.6)'
-  }
-}));
-
-const SocialLinks = styled(Stack)(({ theme }: any) => ({
-  display: "flex",
-  justifyContent: "center",
-  gap: "1.5rem",
-  marginTop: "1.5rem",
-}));
-
-const TechChip = styled(Chip)(({ theme }: any) => ({
-  background: "rgba(0, 112, 243, 0.15)",
-  color: "#00aaff",
-  fontSize: "0.85rem",
-  fontWeight: 500,
-}));
-
-const SkillChip = styled(Chip)(({ theme }: any) => ({
-  background: "rgba(255, 255, 255, 0.08)",
-  color: "#e0e0e0",
-  fontSize: "1rem",
-  fontWeight: 500,
-  border: "1px solid transparent",
-  transition: "all 0.3s ease",
-  "&:hover": {
-    background: "rgba(0, 170, 255, 0.15)",
-    borderColor: "rgba(0, 170, 255, 0.5)",
-    transform: "scale(1.05)",
-  },
-}));
-
-const ContactContainer = styled(Paper)(({ theme }: any) => ({
-  background: 'rgba(25,25,30,0.55)',
-  backdropFilter: 'blur(14px)',
-  border: '1px solid rgba(255,255,255,0.08)',
-  borderRadius: 22,
-  padding: '2.75rem 2.5rem',
-  maxWidth: '960px',
-  width: '100%',
-  margin: '0 auto',
-  boxShadow: '0 10px 40px rgba(0,0,0,0.55)',
-  display: 'flex',
-  flexDirection: 'row',
-  gap: '2.5rem',
-  [theme.breakpoints.down('md')]: {
-    flexDirection: 'column',
-    padding: '2.25rem 2rem'
-  }
-}));
-
-// ----------------------------
-// Component
-// ----------------------------
 const Home = () => {
   const data = portfolioData as Partial<PortfolioData>;
   const { education = [], experience = [], projects = [], skills = { languages: [], frameworksAndLibraries: [], toolsAndPlatforms: [] } } = data;
@@ -137,325 +37,257 @@ const Home = () => {
     <>
       <Navbar />
 
-      <Box
-        sx={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "5rem 1rem 2rem",
-          background: "linear-gradient(to right, #0f2027, #203a43, #2c5364)",
-        }}
-      >
+      <Box className={styles.mainContainer}>
         <Head>
           <title>Nanda Kumudhan - Portfolio</title>
           <meta name="description" content="Nanda Kumudhan's Portfolio" />
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         </Head>
 
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            maxWidth: {
-              xs: "100%",
-              sm: "90%",
-              md: "85%",
-              lg: "1200px",
-              xl: "1400px",
-            },
-            paddingX: {
-              xs: "1rem",
-              sm: "1.5rem",
-              md: "2rem",
-            },
-          }}
-        >
+        <Box className={styles.contentWrapper}>
           {/* Hero Section */}
           <GlassPanel accent="hero" id="home">
-            <Typography
-              variant="h1"
-              sx={{
-                fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
-                fontWeight: "bold",
-                color: "#e0e0e0",
-                margin: 0,
-                lineHeight: 1.15,
-              }}
-            >
+            <Heading as="h1" size="9" className={styles.heroTitle}>
               Nanda Kumudhan
-            </Typography>
-            <Typography
-              sx={{
-                fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem" },
-                margin: "1rem 0",
-                color: "#d0d0d0",
-                lineHeight: 1.5,
-              }}
-            >
+            </Heading>
+            <Text as="p" className={styles.heroSubtitle}>
               A passionate and driven Computer Science and AI student at
               Loughborough University, specializing in full-stack development
               and intelligent systems.
-            </Typography>
+            </Text>
 
-            <SocialLinks direction="row">
-              <IconButton
-                component="a"
-                href="https://github.com/nanda-kumudhan"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ color: "white", "&:hover": { color: "#00aaff" } }}
+            <Flex gap="6" justify="center" className={styles.socialLinks}>
+              <Button
+                asChild
+                size="3"
+                variant="ghost"
+                className={styles.socialButton}
               >
-                <FaGithub size={30} />
-              </IconButton>
-              <IconButton
-                component="a"
-                href="https://www.linkedin.com/in/nanda-kumudhan"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ color: "white", "&:hover": { color: "#00aaff" } }}
+                <a
+                  href="https://github.com/nanda-kumudhan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                >
+                  <FaGithub size={28} />
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="3"
+                variant="ghost"
+                className={styles.socialButton}
               >
-                <FaLinkedin size={30} />
-              </IconButton>
-            </SocialLinks>
+                <a
+                  href="https://www.linkedin.com/in/nanda-kumudhan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin size={28} />
+                </a>
+              </Button>
+            </Flex>
           </GlassPanel>
 
           {/* Education */}
-          <Box id="education" sx={{ 
-            width: "100%",
-            margin: "3rem 0",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}>
-            <SectionTitle variant="h2">Education</SectionTitle>
+          <Box id="education" className={styles.section}>
+            <Heading as="h2" size="8" className={styles.sectionTitle}>
+              Education
+            </Heading>
 
-            <Box sx={{ width: "100%" }}>
+            <Box className={styles.sectionContent}>
               {education.map((edu, index) => (
-                <ExperienceItem key={index}>
-                  <Typography variant="h5" sx={{ color: "#00aaff", margin: 0 }}>
+                <GlassPanel key={index} accent="section" className={styles.experienceItem}>
+                  <Heading as="h3" size="5" className={styles.itemTitle}>
                     {edu.institution}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "1.1rem",
-                      fontWeight: "bold",
-                      color: "#ccc",
-                      margin: "0.25rem 0",
-                    }}
-                  >
+                  </Heading>
+                  <Text as="p" size="4" className={styles.itemSubtitle}>
                     {edu.qualification}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontStyle: "italic",
-                      color: "#aaa",
-                      margin: "0.25rem 0 1rem 0",
-                    }}
-                  >
+                  </Text>
+                  <Text as="p" size="2" className={styles.itemMeta}>
                     {edu.location} | {edu.duration}
-                  </Typography>
+                  </Text>
 
-                  <List sx={{ color: "#d0d0d0" }}>
+                  <ul className={styles.detailsList}>
                     {edu.details.map((detail, i) => (
-                      <ListItem key={i} sx={{ paddingLeft: 0 }}>
-                        <ListItemText primary={detail} />
-                      </ListItem>
+                      <li key={i}>
+                        <Text as="p" size="3" className={styles.listItem}>
+                          {detail}
+                        </Text>
+                      </li>
                     ))}
-                  </List>
-                </ExperienceItem>
+                  </ul>
+                </GlassPanel>
               ))}
             </Box>
           </Box>
 
           {/* Experience */}
-          <Box id="experience" sx={{ 
-            width: "100%",
-            margin: "3rem 0",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}>
-            <SectionTitle variant="h2">Experience</SectionTitle>
+          <Box id="experience" className={styles.section}>
+            <Heading as="h2" size="8" className={styles.sectionTitle}>
+              Experience
+            </Heading>
 
-            <Box sx={{ width: "100%" }}>
+            <Box className={styles.sectionContent}>
               {experience.map((exp, index) => (
-                <ExperienceItem key={index}>
-                  <Typography variant="h5" sx={{ color: "#00aaff", margin: 0 }}>
+                <GlassPanel key={index} accent="section" className={styles.experienceItem}>
+                  <Heading as="h3" size="5" className={styles.itemTitle}>
                     {exp.role}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "1.1rem",
-                      fontWeight: "bold",
-                      color: "#ccc",
-                      margin: "0.25rem 0",
-                    }}
-                  >
+                  </Heading>
+                  <Text as="p" size="4" className={styles.itemSubtitle}>
                     {exp.company}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontStyle: "italic",
-                      color: "#aaa",
-                      margin: "0.25rem 0 1rem 0",
-                    }}
-                  >
+                  </Text>
+                  <Text as="p" size="2" className={styles.itemMeta}>
                     {exp.duration}
-                  </Typography>
+                  </Text>
 
-                  <List sx={{ color: "#d0d0d0" }}>
+                  <ul className={styles.detailsList}>
                     {exp.description.map((item, i) => (
-                      <ListItem key={i} sx={{ paddingLeft: 0 }}>
-                        <ListItemText primary={item} />
-                      </ListItem>
+                      <li key={i}>
+                        <Text as="p" size="3" className={styles.listItem}>
+                          {item}
+                        </Text>
+                      </li>
                     ))}
-                  </List>
-                </ExperienceItem>
+                  </ul>
+                </GlassPanel>
               ))}
             </Box>
           </Box>
 
           {/* Projects */}
-          <Box id="projects" sx={{ 
-            width: "100%",
-            margin: "3rem 0",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}>
-            <SectionTitle variant="h2">Projects</SectionTitle>
+          <Box id="projects" className={styles.section}>
+            <Heading as="h2" size="8" className={styles.sectionTitle}>
+              Projects
+            </Heading>
 
-            <Grid container spacing={2} sx={{ width: "100%" }}>
+            <Grid
+              columns={{ initial: "1", sm: "2", md: "3", lg: "4" }}
+              gap="4"
+              width="100%"
+              className={styles.projectsGrid}
+            >
               {projects.map((project, index) => (
-                <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={index}>
-                  <ProjectPanel>
-                    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                      <Typography variant="h6" sx={{ color: "#00aaff", marginBottom: "0.5rem" }}>
+                <GlassPanel key={index} accent="section" className={styles.projectCard}>
+                  <Flex direction="column" gap="4" height="100%">
+                    <Box>
+                      <Heading as="h4" size="4" className={styles.projectTitle}>
                         {project.name}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontStyle: "italic",
-                          color: "#aaa",
-                          marginBottom: "1rem",
-                          fontSize: "0.9rem",
-                        }}
-                      >
+                      </Heading>
+                      <Text as="p" size="2" className={styles.projectDate}>
                         {project.date}
-                      </Typography>
-
-                      <List sx={{ color: "#d0d0d0", marginBottom: "1rem", flex: 1, paddingLeft: 0 }}>
-                        {project.description.map((item, i) => (
-                          <ListItem key={i} sx={{ paddingLeft: 0, fontSize: "0.9rem" }}>
-                            <ListItemText primary={item} />
-                          </ListItem>
-                        ))}
-                      </List>
-
-                      <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: "0.5rem", marginTop: "auto" }}>
-                        {project.stack.map((tech, i) => (
-                          <TechChip key={i} label={tech} />
-                        ))}
-                      </Stack>
-
-                      {project.module && (
-                        <Typography
-                          sx={{
-                            fontSize: "0.8rem",
-                            fontStyle: "italic",
-                            color: "#aaa",
-                            marginTop: "1rem",
-                            textAlign: "right",
-                          }}
-                        >
-                          {project.module}
-                        </Typography>
-                      )}
+                      </Text>
                     </Box>
-                  </ProjectPanel>
-                </Grid>
+
+                    <ul className={styles.projectDescList} style={{ flex: 1 }}>
+                      {project.description.map((item, i) => (
+                        <li key={i}>
+                          <Text as="p" size="2" className={styles.projectListItem}>
+                            {item}
+                          </Text>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Flex gap="2" wrap="wrap">
+                      {project.stack.map((tech, i) => (
+                        <Badge key={i} className={styles.techBadge}>
+                          {tech}
+                        </Badge>
+                      ))}
+                    </Flex>
+
+                    {project.module && (
+                      <Text as="p" size="1" className={styles.projectModule}>
+                        {project.module}
+                      </Text>
+                    )}
+                  </Flex>
+                </GlassPanel>
               ))}
             </Grid>
           </Box>
 
           {/* Skills */}
-          <Box id="skills" sx={{ 
-            width: "100%",
-            margin: "3rem 0",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}>
-            <SectionTitle variant="h2">Skills</SectionTitle>
+          <Box id="skills" className={styles.section}>
+            <Heading as="h2" size="8" className={styles.sectionTitle}>
+              Skills
+            </Heading>
 
-            <Grid container spacing={3} sx={{ width: "100%" }}>
-              <Grid size={{ xs: 12, md: 6, lg: 4 }}>
-                <Typography variant="h6" sx={{ color: "#00aaff", borderBottom: "2px solid rgba(0, 170, 255, 0.3)", paddingBottom: "0.5rem", marginBottom: "1rem" }}>
+            <Grid
+              columns={{ initial: "1", md: "2", lg: "3" }}
+              gap="6"
+              width="100%"
+            >
+              <Box>
+                <Heading as="h3" size="5" className={styles.skillsCategory}>
                   Languages
-                </Typography>
-                <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: "0.8rem" }}>
+                </Heading>
+                <Flex gap="3" wrap="wrap">
                   {skills.languages.map((skill, index) => (
-                    <SkillChip key={index} label={skill} />
+                    <Badge key={index} className={styles.skillBadge}>
+                      {skill}
+                    </Badge>
                   ))}
-                </Stack>
-              </Grid>
+                </Flex>
+              </Box>
 
-              <Grid size={{ xs: 12, md: 6, lg: 4 }}>
-                <Typography variant="h6" sx={{ color: "#00aaff", borderBottom: "2px solid rgba(0, 170, 255, 0.3)", paddingBottom: "0.5rem", marginBottom: "1rem" }}>
+              <Box>
+                <Heading as="h3" size="5" className={styles.skillsCategory}>
                   Frameworks & Libraries
-                </Typography>
-                <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: "0.8rem" }}>
+                </Heading>
+                <Flex gap="3" wrap="wrap">
                   {skills.frameworksAndLibraries.map((skill, index) => (
-                    <SkillChip key={index} label={skill} />
+                    <Badge key={index} className={styles.skillBadge}>
+                      {skill}
+                    </Badge>
                   ))}
-                </Stack>
-              </Grid>
+                </Flex>
+              </Box>
 
-              <Grid size={{ xs: 12, md: 6, lg: 4 }}>
-                <Typography variant="h6" sx={{ color: "#00aaff", borderBottom: "2px solid rgba(0, 170, 255, 0.3)", paddingBottom: "0.5rem", marginBottom: "1rem" }}>
+              <Box>
+                <Heading as="h3" size="5" className={styles.skillsCategory}>
                   Tools & Platforms
-                </Typography>
-                <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: "0.8rem" }}>
+                </Heading>
+                <Flex gap="3" wrap="wrap">
                   {skills.toolsAndPlatforms.map((skill, index) => (
-                    <SkillChip key={index} label={skill} />
+                    <Badge key={index} className={styles.skillBadge}>
+                      {skill}
+                    </Badge>
                   ))}
-                </Stack>
-              </Grid>
+                </Flex>
+              </Box>
             </Grid>
           </Box>
 
           {/* Contact */}
-          <Box id="contact" sx={{ 
-            width: "100%",
-            margin: "3rem 0",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}>
-            <SectionTitle variant="h2">Contact Me</SectionTitle>
-            <ContactContainer>
-              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Typography variant="h4" sx={{ fontWeight: 600, letterSpacing: 0.5, color: '#e0e0e0', mb: 1 }}>
-                  Let's Build Something
-                </Typography>
-                <Typography sx={{ color: '#b0b0b0', lineHeight: 1.5, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
-                  Whether you have a question, a project idea, or just want to connect—drop a message. I’m open to internships, collaborations and innovative product ideas.
-                </Typography>
-                <Stack direction="row" spacing={1} sx={{ mt: 'auto', flexWrap: 'wrap' }}>
-                  <Chip label="Full-stack" variant="outlined" sx={{ borderColor: 'rgba(0,170,255,0.5)', color: '#00aaff' }} />
-                  <Chip label="AI" variant="outlined" sx={{ borderColor: 'rgba(0,170,255,0.5)', color: '#00aaff' }} />
-                  <Chip label="Rapid Prototyping" variant="outlined" sx={{ borderColor: 'rgba(0,170,255,0.5)', color: '#00aaff' }} />
-                </Stack>
-              </Box>
-              <Box sx={{ flex: 1 }}>
-                <ContactForm />
-              </Box>
-            </ContactContainer>
+          <Box id="contact" className={styles.section}>
+            <Heading as="h2" size="8" className={styles.sectionTitle}>
+              Contact Me
+            </Heading>
+            <GlassPanel accent="section" className={styles.contactContainer}>
+              <Flex direction={{ initial: "column", md: "row" }} gap="8" height="100%">
+                <Box className={styles.contactInfo}>
+                  <Heading as="h3" size="6" className={styles.contactHeading}>
+                    Let's Build Something
+                  </Heading>
+                  <Text as="p" className={styles.contactText}>
+                    Whether you have a question, a project idea, or just want to
+                    connect—drop a message. I'm open to internships, collaborations
+                    and innovative product ideas.
+                  </Text>
+                  <Flex gap="2" wrap="wrap" className={styles.contactBadges}>
+                    <Badge className={styles.contactBadge}>Full-stack</Badge>
+                    <Badge className={styles.contactBadge}>AI</Badge>
+                    <Badge className={styles.contactBadge}>Rapid Prototyping</Badge>
+                  </Flex>
+                </Box>
+                <Box className={styles.contactFormContainer}>
+                  <ContactForm />
+                </Box>
+              </Flex>
+            </GlassPanel>
           </Box>
         </Box>
       </Box>

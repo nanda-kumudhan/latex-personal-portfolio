@@ -1,0 +1,72 @@
+.glassPanel {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: rgba(25, 25, 25, 0.55);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  padding: 2.25rem 2rem;
+}
+
+.glassPanel:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 56px rgba(0, 0, 0, 0.65);
+}
+
+.glassPanel::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: -120px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle at center, rgba(0, 170, 255, 0.18), transparent 70%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.glassPanel::after {
+  content: '';
+  position: absolute;
+  bottom: -140px;
+  right: -140px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle at center, rgba(0, 170, 255, 0.12), transparent 70%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.accent_hero {
+  padding: 3.5rem 3rem;
+  background: linear-gradient(135deg, rgba(25, 25, 30, 0.65) 0%, rgba(35, 55, 70, 0.6) 100%);
+  border-radius: 24px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
+}
+
+.accent_hero::before {
+  opacity: 1;
+}
+
+.accent_hero::after {
+  opacity: 0.85;
+}
+
+.accent_section {
+  padding: 2.5rem 2.25rem;
+}
+
+@media (max-width: 640px) {
+  .glassPanel {
+    padding: 1.75rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .accent_hero {
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+  }
+}

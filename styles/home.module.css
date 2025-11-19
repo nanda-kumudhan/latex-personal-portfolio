@@ -1,0 +1,288 @@
+.mainContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 1rem 2rem;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .contentWrapper {
+    max-width: 90%;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .contentWrapper {
+    max-width: 85%;
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contentWrapper {
+    max-width: 1200px;
+  }
+}
+
+/* Hero Section */
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin: 0;
+  line-height: 1.15;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #d0d0d0;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .heroSubtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+}
+
+.socialLinks {
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.socialButton {
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socialButton:hover {
+  color: #00aaff;
+  transform: scale(1.1);
+}
+
+/* Sections */
+.section {
+  width: 100%;
+  margin: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #e0e0e0;
+}
+
+@media (max-width: 640px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+}
+
+.sectionContent {
+  width: 100%;
+}
+
+/* Experience/Education Items */
+.experienceItem {
+  margin-bottom: 1.5rem;
+}
+
+.itemTitle {
+  color: #00aaff;
+  margin: 0;
+  font-weight: 600;
+}
+
+.itemSubtitle {
+  font-weight: 600;
+  color: #ccc;
+  margin: 0.25rem 0;
+}
+
+.itemMeta {
+  font-style: italic;
+  color: #aaa;
+  margin: 0.25rem 0 1rem 0;
+}
+
+.detailsList {
+  list-style: none;
+  padding-left: 0;
+  color: #d0d0d0;
+  margin: 0;
+}
+
+.listItem {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+/* Projects */
+.projectsGrid {
+  width: 100%;
+}
+
+.projectCard {
+  height: 100%;
+  padding: 1.25rem 1.1rem;
+}
+
+.projectTitle {
+  color: #00aaff;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.projectDate {
+  font-style: italic;
+  color: #aaa;
+  margin-bottom: 1rem;
+}
+
+.projectDescList {
+  list-style: none;
+  padding-left: 0;
+  color: #d0d0d0;
+  margin: 0 0 1rem 0;
+  flex: 1;
+}
+
+.projectListItem {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+.techBadge {
+  background: rgba(0, 112, 243, 0.15) !important;
+  color: #00aaff !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.projectModule {
+  font-style: italic;
+  color: #aaa;
+  margin-top: 1rem;
+  text-align: right;
+}
+
+/* Skills */
+.skillsCategory {
+  color: #00aaff;
+  border-bottom: 2px solid rgba(0, 170, 255, 0.3);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.skillBadge {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #e0e0e0 !important;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skillBadge:hover {
+  background: rgba(0, 170, 255, 0.15) !important;
+  border-color: rgba(0, 170, 255, 0.5);
+  transform: scale(1.05);
+}
+
+/* Contact */
+.contactContainer {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactHeading {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #e0e0e0;
+  margin-bottom: 0.5rem;
+}
+
+.contactText {
+  color: #b0b0b0;
+  line-height: 1.5;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+  .contactText {
+    font-size: 0.95rem;
+  }
+}
+
+.contactBadges {
+  margin-top: auto;
+  gap: 0.5rem;
+}
+
+.contactBadge {
+  border-color: rgba(0, 170, 255, 0.5) !important;
+  color: #00aaff !important;
+  background: transparent !important;
+}
+
+.contactFormContainer {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .contactContainer {
+    flex-direction: column;
+    padding: 2.25rem 2rem;
+  }
+}

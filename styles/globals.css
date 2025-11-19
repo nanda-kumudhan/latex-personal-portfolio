@@ -19,3 +19,49 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* Radix UI Dark Theme Customizations */
+:root {
+  --accent-9: #00aaff;
+  --accent-a9: rgba(0, 170, 255, 0.2);
+}
+
+/* Ensure Radix components use dark theme colors */
+body {
+  color-scheme: dark;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a,
+input,
+textarea {
+  transition: all 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20, 24, 40, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 170, 255, 0.4);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 170, 255, 0.6);
+}
