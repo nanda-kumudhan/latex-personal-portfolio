@@ -10,8 +10,8 @@ import {
   List,
   ListItem,
   ListItemText,
+  Grid,
 } from "@mui/material";
-import Grid2 from "@mui/material/Grid2";
 import { styled } from "@mui/material/styles";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -336,9 +336,9 @@ const Home = () => {
           }}>
             <SectionTitle variant="h2">Projects</SectionTitle>
 
-            <Grid2 container spacing={2} sx={{ width: "100%" }}>
+            <Grid container spacing={2} sx={{ width: "100%" }}>
               {projects.map((project, index) => (
-                <Grid2 xs={12} sm={6} md={4} lg={3} key={index}>
+                <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={index}>
                   <StyledCard>
                     <CardContent sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
                       <Typography variant="h6" sx={{ color: "#00aaff", marginBottom: "0.5rem" }}>
@@ -384,9 +384,9 @@ const Home = () => {
                       )}
                     </CardContent>
                   </StyledCard>
-                </Grid2>
+                </Grid>
               ))}
-            </Grid2>
+            </Grid>
           </Box>
 
           {/* Skills */}
@@ -399,8 +399,8 @@ const Home = () => {
           }}>
             <SectionTitle variant="h2">Skills</SectionTitle>
 
-            <Grid2 container spacing={3} sx={{ width: "100%" }}>
-              <Grid2 xs={12} md={6} lg={4}>
+            <Grid container spacing={3} sx={{ width: "100%" }}>
+              <Grid size={{ xs: 12, md: 6, lg: 4 }}>
                 <Typography variant="h6" sx={{ color: "#00aaff", borderBottom: "2px solid rgba(0, 170, 255, 0.3)", paddingBottom: "0.5rem", marginBottom: "1rem" }}>
                   Languages
                 </Typography>
@@ -409,9 +409,9 @@ const Home = () => {
                     <SkillChip key={index} label={skill} />
                   ))}
                 </Stack>
-              </Grid2>
+              </Grid>
 
-              <Grid2 xs={12} md={6} lg={4}>
+              <Grid size={{ xs: 12, md: 6, lg: 4 }}>
                 <Typography variant="h6" sx={{ color: "#00aaff", borderBottom: "2px solid rgba(0, 170, 255, 0.3)", paddingBottom: "0.5rem", marginBottom: "1rem" }}>
                   Frameworks & Libraries
                 </Typography>
@@ -420,9 +420,9 @@ const Home = () => {
                     <SkillChip key={index} label={skill} />
                   ))}
                 </Stack>
-              </Grid2>
+              </Grid>
 
-              <Grid2 xs={12} md={6} lg={4}>
+              <Grid size={{ xs: 12, md: 6, lg: 4 }}>
                 <Typography variant="h6" sx={{ color: "#00aaff", borderBottom: "2px solid rgba(0, 170, 255, 0.3)", paddingBottom: "0.5rem", marginBottom: "1rem" }}>
                   Tools & Platforms
                 </Typography>
@@ -431,8 +431,8 @@ const Home = () => {
                     <SkillChip key={index} label={skill} />
                   ))}
                 </Stack>
-              </Grid2>
-            </Grid2>
+              </Grid>
+            </Grid>
           </Box>
 
           {/* Contact */}
