@@ -130,8 +130,8 @@ async function parseCv() {
   if (skillsMatch) {
     const skillsSection = skillsMatch[1];
     
-    // Extract languages
-    const languagesMatch = skillsSection.match(/\\textbf\{Languages\}\{?\s*:\s*([^}\\]+?)(?=\\\\|\\textbf|\n|$)/);
+    // Extract languages - format: \textbf{Languages}{: items} or \textbf{Languages}: items
+    const languagesMatch = skillsSection.match(/\\textbf\{Languages\}\{?:\s*([^}\\]+?)(?=\\\\|\}|\\textbf|$)/);
     if (languagesMatch) {
       data.skills.languages = languagesMatch[1]
         .split(',')
@@ -140,7 +140,7 @@ async function parseCv() {
     }
     
     // Extract frameworks & libraries
-    const frameworksMatch = skillsSection.match(/\\textbf\{Frameworks[^}]*\}\{?\s*:\s*([^}\\]+?)(?=\\\\|\\textbf|\n|$)/);
+    const frameworksMatch = skillsSection.match(/\\textbf\{Frameworks[^}]*\}\{?:\s*([^}\\]+?)(?=\\\\|\}|\\textbf|$)/);
     if (frameworksMatch) {
       data.skills.frameworksAndLibraries = frameworksMatch[1]
         .split(',')
@@ -149,7 +149,7 @@ async function parseCv() {
     }
     
     // Extract tools & platforms
-    const toolsMatch = skillsSection.match(/\\textbf\{Tools[^}]*\}\{?\s*:\s*([^}\\]+?)(?=\\\\|\\textbf|\n|$)/);
+    const toolsMatch = skillsSection.match(/\\textbf\{Tools[^}]*\}\{?:\s*([^}\\]+?)(?=\\\\|\}|\\textbf|$)/);
     if (toolsMatch) {
       data.skills.toolsAndPlatforms = toolsMatch[1]
         .split(',')
