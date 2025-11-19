@@ -21,7 +21,8 @@ async function parseCv() {
   }
 
   const fileContent = await fs.readFile(cvFilePath, 'utf8');
-  const tree = unified().use(parse).parse(fileContent);
+  const tree = parse(fileContent);
+
 
   const data = {
     education: [],
