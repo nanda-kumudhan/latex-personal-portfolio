@@ -26,32 +26,6 @@ const theme = createTheme({
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif'
   },
   components: {
-    MuiPaper: {
-      variants: [
-        {
-          props: { variant: 'glass' },
-          style: {
-            background: glassTokens.baseBg,
-            backdropFilter: glassTokens.blur,
-            borderRadius: '18px',
-            border: glassTokens.border,
-            boxShadow: glassTokens.shadowMd,
-            position: 'relative',
-            overflow: 'hidden'
-          }
-        },
-        {
-          props: { variant: 'glassElevated' },
-          style: {
-            background: glassTokens.heroGradient,
-            backdropFilter: glassTokens.blurStrong,
-            borderRadius: '22px',
-            border: glassTokens.borderStrong,
-            boxShadow: glassTokens.shadowLg
-          }
-        }
-      ]
-    },
     MuiLink: {
       styleOverrides: {
         root: {
@@ -61,16 +35,7 @@ const theme = createTheme({
           transition: 'color .3s ease',
           fontWeight: 500
         }
-      },
-      variants: [
-        {
-          props: { variant: 'nav' },
-          style: {
-            padding: '0.25rem 0',
-            fontSize: '1.05rem'
-          }
-        }
-      ]
+      }
     }
   }
 });
