@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { AppBar, Toolbar, Box, Link as MUILink } from '@mui/material';
+import { AppBar, Toolbar, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
@@ -14,7 +14,7 @@ const NavLinks = styled(Box)(({ theme }) => ({
   gap: '2rem',
 }));
 
-const StyledLink = styled(MUILink)(({ theme }) => ({
+const StyledLink = styled('a')(({ theme }) => ({
   color: 'white',
   textDecoration: 'none',
   fontSize: '1.1rem',
@@ -30,24 +30,24 @@ const Navbar = () => {
     <StyledAppBar>
       <Toolbar sx={{ justifyContent: 'center' }}>
         <NavLinks>
-          <StyledLink component={Link} href="#home">
-            Home
-          </StyledLink>
-          <StyledLink component={Link} href="#education">
-            Education
-          </StyledLink>
-          <StyledLink component={Link} href="#experience">
-            Experience
-          </StyledLink>
-          <StyledLink component={Link} href="#projects">
-            Projects
-          </StyledLink>
-          <StyledLink component={Link} href="#skills">
-            Skills
-          </StyledLink>
-          <StyledLink component={Link} href="#contact">
-            Contact
-          </StyledLink>
+          <Link href="#home" passHref legacyBehavior>
+            <StyledLink>Home</StyledLink>
+          </Link>
+          <Link href="#education" passHref legacyBehavior>
+            <StyledLink>Education</StyledLink>
+          </Link>
+          <Link href="#experience" passHref legacyBehavior>
+            <StyledLink>Experience</StyledLink>
+          </Link>
+          <Link href="#projects" passHref legacyBehavior>
+            <StyledLink>Projects</StyledLink>
+          </Link>
+          <Link href="#skills" passHref legacyBehavior>
+            <StyledLink>Skills</StyledLink>
+          </Link>
+          <Link href="#contact" passHref legacyBehavior>
+            <StyledLink>Contact</StyledLink>
+          </Link>
         </NavLinks>
       </Toolbar>
     </StyledAppBar>
