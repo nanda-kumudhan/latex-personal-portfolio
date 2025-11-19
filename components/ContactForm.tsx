@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Stack, Alert, CircularProgress } from '@mui/material';
+import { TextField, Button, Stack, Alert, CircularProgress, Snackbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import emailjs from '@emailjs/browser';
 
@@ -57,6 +57,12 @@ function ContactForm() {
   const [formData, setFormData] = useState<FormData>({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [snackOpen, setSnackOpen] = useState(false);
+
+  // Simple validation helpers
+  const isEmailValid = (email: string) => /[^@\s]+@[^@\s]+\.[^@\s]+/.test(email);
+  const isNameValid = (name: string) => name.trim().length >= 2;
+  const isMessageValid = (msg: string) => msg.trim().length >= 10;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -65,6 +71,11 @@ function ContactForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    // Client-side validation
+    if (!isNameValid(formData.name) || !isEmailValid(formData.email) || !isMessageValid(formData.message)) {
+      setMessage({ type: 'error', text: 'Please fill all fields correctly (message ≥ 10 chars).' });
+      return;
+    }
     
     if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
       console.error('❌ [FORM] EmailJS credentials not configured');
@@ -92,6 +103,15 @@ function ContactForm() {
         console.log('✅ [FORM] Email sent successfully');
         setMessage({ type: 'success', text: 'Message sent successfully! I\'ll get back to you soon.' });
         setFormData({ name: '', email: '', message: '' });
+        setSnackOpen(true);
+        // Fire confetti if available
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-var-requires
+          const confetti = require('canvas-confetti');
+          confetti({ particleCount: 90, spread: 70, origin: { y: 0.6 } });
+        } catch (_e) {
+          // silent fallback
+        }
       }
     } catch (error) {
       console.error('❌ [FORM] Failed to send email:', error);
@@ -124,6 +144,8 @@ function ContactForm() {
         value={formData.name}
         onChange={handleChange}
         disabled={loading}
+        error={formData.name !== '' && !isNameValid(formData.name)}
+        helperText={formData.name !== '' && !isNameValid(formData.name) ? 'Name too short' : ' '}
         InputLabelProps={{
           sx: { color: '#ccc' },
         }}
@@ -139,6 +161,8 @@ function ContactForm() {
         value={formData.email}
         onChange={handleChange}
         disabled={loading}
+        error={formData.email !== '' && !isEmailValid(formData.email)}
+        helperText={formData.email !== '' && !isEmailValid(formData.email) ? 'Invalid email' : ' '}
         InputLabelProps={{
           sx: { color: '#ccc' },
         }}
@@ -155,6 +179,8 @@ function ContactForm() {
         value={formData.message}
         onChange={handleChange}
         disabled={loading}
+        error={formData.message !== '' && !isMessageValid(formData.message)}
+        helperText={formData.message !== '' && !isMessageValid(formData.message) ? 'Minimum 10 characters' : ' '}
         InputLabelProps={{
           sx: { color: '#ccc' },
         }}
@@ -162,6 +188,13 @@ function ContactForm() {
       <StyledButton type="submit" variant="contained" disabled={loading}>
         {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Submit'}
       </StyledButton>
+      <Snackbar
+        open={snackOpen}
+        autoHideDuration={4000}
+        onClose={() => setSnackOpen(false)}
+        message="Message sent!"
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      />
     </Stack>
   );
 }

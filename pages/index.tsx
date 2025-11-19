@@ -4,58 +4,42 @@ import {
   Typography,
   Stack,
   IconButton,
-  Card,
-  CardContent,
   Chip,
   List,
   ListItem,
   ListItemText,
   Grid,
+  Paper
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import Navbar from "../components/Navbar";
 import ContactForm from "../components/ContactForm";
+import GlassPanel from "../components/GlassPanel";
 
 // Import the generated JSON from parse-cv.mjs
 import portfolioData from "../data/portfolio-data.json";
 import { PortfolioData } from "../data/portfolio";
 
 // ===== STYLED COMPONENTS =====
-const GlassmorphismCard = styled(Box)(({ theme }: any) => ({
-  background: "rgba(20, 20, 20, 0.6)",
-  backdropFilter: "blur(12px)",
-  borderRadius: "15px",
-  border: "1px solid rgba(255, 255, 255, 0.1)",
-  padding: "2.5rem",
-  textAlign: "center",
-  width: "100%",
-  boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
-  transition: "all 0.3s ease",
-  marginBottom: "2rem",
-  position: "relative",
-  overflow: "hidden",
-  "&:hover": {
-    transform: "translateY(-5px)",
-    boxShadow: "0 12px 40px 0 rgba(0, 0, 0, 0.5)",
-  },
-  [theme.breakpoints.up("md")]: {
-    maxWidth: "800px",
-  },
-}));
+// Deprecated individual glass boxes replaced with GlassPanel component.
 
-const StyledCard = styled(Card)(({ theme }: any) => ({
-  background: "rgba(20, 20, 20, 0.5)",
-  backdropFilter: "blur(8px)",
-  border: "1px solid rgba(255, 255, 255, 0.1)",
-  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
-  transition: "all 0.3s ease",
-  "&:hover": {
-    background: "rgba(30, 30, 30, 0.7)",
-    transform: "translateY(-8px)",
-    boxShadow: "0 8px 30px rgba(0, 0, 0, 0.3)",
-  },
+const ProjectPanel = styled(Paper)(({ theme }: any) => ({
+  background: 'rgba(25,25,30,0.55)',
+  backdropFilter: 'blur(14px)',
+  border: '1px solid rgba(255,255,255,0.08)',
+  borderRadius: 18,
+  padding: '1.25rem 1.1rem 1.1rem',
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+  boxShadow: '0 6px 24px rgba(0,0,0,0.5)',
+  transition: 'transform .35s ease, box-shadow .35s ease',
+  '&:hover': {
+    transform: 'translateY(-6px)',
+    boxShadow: '0 12px 42px rgba(0,0,0,0.6)'
+  }
 }));
 
 const SectionTitle = styled(Typography)(({ theme }: any) => ({
@@ -70,18 +54,19 @@ const SectionTitle = styled(Typography)(({ theme }: any) => ({
   },
 }));
 
-const ExperienceItem = styled(Box)(({ theme }: any) => ({
-  background: "rgba(20, 20, 20, 0.5)",
-  backdropFilter: "blur(8px)",
-  borderRadius: "10px",
-  border: "1px solid rgba(255, 255, 255, 0.1)",
-  padding: "2rem",
-  marginBottom: "1.5rem",
-  transition: "all 0.3s ease",
-  "&:hover": {
-    background: "rgba(30, 30, 30, 0.7)",
-    transform: "translateY(-5px)",
-  },
+const ExperienceItem = styled(Paper)(({ theme }: any) => ({
+  background: 'rgba(25,25,30,0.55)',
+  backdropFilter: 'blur(12px)',
+  border: '1px solid rgba(255,255,255,0.08)',
+  borderRadius: 18,
+  padding: '1.75rem 1.5rem',
+  marginBottom: '1.5rem',
+  transition: 'transform .3s ease, box-shadow .3s ease',
+  boxShadow: '0 6px 24px rgba(0,0,0,0.45)',
+  '&:hover': {
+    transform: 'translateY(-5px)',
+    boxShadow: '0 12px 40px rgba(0,0,0,0.6)'
+  }
 }));
 
 const SocialLinks = styled(Stack)(({ theme }: any) => ({
@@ -112,14 +97,23 @@ const SkillChip = styled(Chip)(({ theme }: any) => ({
   },
 }));
 
-const ContactContainer = styled(Box)(({ theme }: any) => ({
-  background: "rgba(20, 20, 20, 0.6)",
-  backdropFilter: "blur(12px)",
-  borderRadius: "10px",
-  border: "1px solid rgba(255, 255, 255, 0.1)",
-  padding: "2.5rem",
-  maxWidth: "600px",
-  margin: "0 auto",
+const ContactContainer = styled(Paper)(({ theme }: any) => ({
+  background: 'rgba(25,25,30,0.55)',
+  backdropFilter: 'blur(14px)',
+  border: '1px solid rgba(255,255,255,0.08)',
+  borderRadius: 22,
+  padding: '2.75rem 2.5rem',
+  maxWidth: '960px',
+  width: '100%',
+  margin: '0 auto',
+  boxShadow: '0 10px 40px rgba(0,0,0,0.55)',
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '2.5rem',
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    padding: '2.25rem 2rem'
+  }
 }));
 
 // ----------------------------
@@ -182,7 +176,7 @@ const Home = () => {
           }}
         >
           {/* Hero Section */}
-          <GlassmorphismCard id="home">
+          <GlassPanel accent="hero" id="home">
             <Typography
               variant="h1"
               sx={{
@@ -228,7 +222,7 @@ const Home = () => {
                 <FaLinkedin size={30} />
               </IconButton>
             </SocialLinks>
-          </GlassmorphismCard>
+          </GlassPanel>
 
           {/* Education */}
           <Box id="education" sx={{ 
@@ -339,8 +333,8 @@ const Home = () => {
             <Grid container spacing={2} sx={{ width: "100%" }}>
               {projects.map((project, index) => (
                 <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={index}>
-                  <StyledCard>
-                    <CardContent sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                  <ProjectPanel>
+                    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
                       <Typography variant="h6" sx={{ color: "#00aaff", marginBottom: "0.5rem" }}>
                         {project.name}
                       </Typography>
@@ -382,8 +376,8 @@ const Home = () => {
                           {project.module}
                         </Typography>
                       )}
-                    </CardContent>
-                  </StyledCard>
+                    </Box>
+                  </ProjectPanel>
                 </Grid>
               ))}
             </Grid>
@@ -445,7 +439,22 @@ const Home = () => {
           }}>
             <SectionTitle variant="h2">Contact Me</SectionTitle>
             <ContactContainer>
-              <ContactForm />
+              <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <Typography variant="h4" sx={{ fontWeight: 600, letterSpacing: 0.5, color: '#e0e0e0', mb: 1 }}>
+                  Let's Build Something
+                </Typography>
+                <Typography sx={{ color: '#b0b0b0', lineHeight: 1.5, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
+                  Whether you have a question, a project idea, or just want to connect—drop a message. I’m open to internships, collaborations and innovative product ideas.
+                </Typography>
+                <Stack direction="row" spacing={1} sx={{ mt: 'auto', flexWrap: 'wrap' }}>
+                  <Chip label="Full-stack" variant="outlined" sx={{ borderColor: 'rgba(0,170,255,0.5)', color: '#00aaff' }} />
+                  <Chip label="AI" variant="outlined" sx={{ borderColor: 'rgba(0,170,255,0.5)', color: '#00aaff' }} />
+                  <Chip label="Rapid Prototyping" variant="outlined" sx={{ borderColor: 'rgba(0,170,255,0.5)', color: '#00aaff' }} />
+                </Stack>
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                <ContactForm />
+              </Box>
             </ContactContainer>
           </Box>
         </Box>

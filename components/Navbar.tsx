@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { AppBar, Toolbar, Box, IconButton, Drawer, List, ListItemButton, ListItemText } from '@mui/material';
+import { AppBar, Toolbar, Box, IconButton, Drawer, List, ListItemButton, ListItemText, Link as MuiLink } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
@@ -20,7 +20,7 @@ const NavLinks = styled(Box)(({ theme }) => ({
   }
 }));
 
-const StyledLink = styled('a', {
+const StyledLink = styled(MuiLink, {
   shouldForwardProp: (prop) => prop !== 'active'
 })<{active?: boolean}>(({ theme, active }) => ({
   color: active ? '#00aaff' : 'white',
