@@ -1,2 +1,10 @@
 node_modules
 .next
+# LaTeX build artifacts
+data/*.aux
+data/*.log
+data/*.out
+data/*.synctex.gz
+
+# Generated portfolio data (regenerated on build)
+data/portfolio-data.json
