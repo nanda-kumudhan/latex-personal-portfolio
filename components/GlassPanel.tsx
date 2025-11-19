@@ -49,5 +49,5 @@ const StyledPaper = styled(Paper)<GlassPanelProps>(({ theme, accent = 'default' 
 }));
 
 export default function GlassPanel({ accent = 'default', ...rest }: GlassPanelProps) {
-  return <StyledPaper accent={accent} variant="glass" {...rest} />;
+  return <StyledPaper accent={accent} {...rest} />;
 }
