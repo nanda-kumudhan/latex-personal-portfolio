@@ -17,9 +17,9 @@
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
     "unified": "^11.0.4",
-    "unified-latex-util-parse": "^2.1.1",
-    "unified-latex-util-visit": "^2.1.1",
-    "unified-latex-util-source": "^2.1.1",
+    "@unified-latex/unified-latex-util-parse": "^1.2.1",
+    "@unified-latex/unified-latex-util-visit": "^1.2.1",
+    "@unified-latex/unified-latex-util-source": "^1.2.1",
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {

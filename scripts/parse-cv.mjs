@@ -1,8 +1,8 @@
 
 import { unified } from 'unified';
-import { parse } from 'unified-latex-util-parse';
-import { visit } from 'unified-latex-util-visit';
-import { toString } from 'unified-latex-util-source';
+import { parse } from '@unified-latex/unified-latex-util-parse';
+import { visit } from '@unified-latex/unified-latex-util-visit';
+import { toString } from '@unified-latex/unified-latex-util-source';
 import fs from 'fs-extra';
 import path from 'path';
 
