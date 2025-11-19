@@ -110,21 +110,30 @@ async function parseCv() {
     console.log('✅ [PARSER] Projects section found');
     const projectsSection = fileContent.substring(projectsStartIdx, projectsEndIdx);
     console.log(`📝 [PARSER] Projects section length: ${projectsSection.length} characters`);
+    console.log(`📝 [PARSER] Projects section preview:\n${projectsSection.substring(0, 300)}...`);
     
     // Match: \resumeProjectHeading{heading}{date} pattern
     const projectRegex = /\\resumeProjectHeading\s*\{\s*([^}]+?)\s*\}\s*\{\s*([^}]+?)\s*\}([\s\S]*?)(?=\\resumeProjectHeading|\\resumeSubHeadingListEnd)/g;
     
     let match;
     let projectCount = 0;
+    let regexTest = projectRegex.test(projectsSection);
+    console.log(`🔍 [PARSER] Regex test result: ${regexTest}`);
+    
+    // Reset regex state after test
+    projectRegex.lastIndex = 0;
+    
     while ((match = projectRegex.exec(projectsSection)) !== null) {
       projectCount++;
       const [, heading, date, itemsText] = match;
-      console.log(`  Found match #${projectCount}`);
+      console.log(`  ✓ Found match #${projectCount}: "${heading.substring(0, 40)}..." dated "${date}"`);
       
       // Parse heading: \textbf{Name} $|$ \emph{Tech1, Tech2, Tech3}
       const headingMatch = heading.match(/\\textbf\s*\{\s*([^}]+)\s*\}\s*\$\|\$\s*\\emph\s*\{\s*([^}]+)\s*\}/);
       const name = headingMatch ? headingMatch[1].trim() : heading.trim();
       const stackStr = headingMatch ? headingMatch[2].trim() : '';
+      
+      console.log(`    Name: "${name}", Stack: "${stackStr}"`);
       
       const stack = stackStr
         .split(',')
