@@ -7,26 +7,14 @@ import ContactForm from "../components/ContactForm";
 
 // Import the generated JSON from parse-cv.mjs
 import portfolioData from "../data/portfolio-data.json";
-import {
-  PortfolioData,
-  Project,
-  Experience,
-  Education,
-} from "../data/portfolio";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
-import fs from "fs";
-import path from "path";
-
-// Enforce type safety on imported JSON
-const data = portfolioData as PortfolioData;
-const { education, experience, projects, skills } = data;
+import { PortfolioData } from "../data/portfolio";
 
 // ----------------------------
 // Component
 // ----------------------------
 const Home = () => {
-  const { education, experience, projects, skills } =
-    portfolioData as PortfolioData;
+  const data = portfolioData as Partial<PortfolioData>;
+  const { education = [], experience = [], projects = [], skills = { languages: [], frameworksAndLibraries: [], toolsAndPlatforms: [] } } = data;
   return (
     <>
       <Navbar />
@@ -192,18 +180,6 @@ const Home = () => {
       </div>
     </>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  const filePath = path.join(process.cwd(), "data", "portfolio-data.json");
-  const jsonData = fs.readFileSync(filePath, "utf-8");
-  const data = JSON.parse(jsonData);
-
-  return {
-    props: {
-      data,
-    },
-  };
 };
 
 export default Home;

@@ -23,114 +23,49 @@ async function parseCv() {
   const fileContent = await fs.readFile(cvFilePath, 'utf8');
   const tree = parse(fileContent);
 
-
   const data = {
     education: [],
     experience: [],
     projects: [],
-    skills: {},
+    skills: {
+      languages: [],
+      frameworksAndLibraries: [],
+      toolsAndPlatforms: [],
+    },
   };
 
-  visit(tree, { type: 'macro' }, (node) => {
-    // ---- EXPERIENCE ----
-    if (node.content === 'cventry') {
-      try {
-        const args = node.args.map(arg => stringifyLatex(arg.content));
-
-        const [
-          roleNode,
-          companyNode,
-          locationNode,
-          durationNode,
-          descriptionNode,
-        ] = args;
-
-        data.experience.push({
-          role: roleNode,
-          company: companyNode,
-          duration: `${locationNode} | ${durationNode}`,
-          description: descriptionNode
-            .split('\\item')
-            .map(s => s.trim())
-            .filter(Boolean),
-        });
-      } catch (e) {
-        console.warn("Could not parse 'cventry'.");
-      }
+  // Parse skills section from the LaTeX file
+  const skillsMatch = fileContent.match(/%-----------TECHNICAL SKILLS-----------\n([\s\S]*?)\n\\end\{document\}/);
+  if (skillsMatch) {
+    const skillsSection = skillsMatch[1];
+    
+    // Extract languages
+    const languagesMatch = skillsSection.match(/\\textbf\{Languages\}\{?\s*:\s*([^}\\]+)/);
+    if (languagesMatch) {
+      data.skills.languages = languagesMatch[1]
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
     }
-
-    // ---- PROJECTS ----
-    if (node.content === 'cvproject') {
-      try {
-        const args = node.args.map(arg => stringifyLatex(arg.content));
-
-        const [
-          nameNode,
-          dateNode,
-          descriptionNode,
-          stackNode
-        ] = args;
-
-        data.projects.push({
-          name: nameNode,
-          date: dateNode,
-          description: descriptionNode
-            .split('\\item')
-            .map(s => s.trim())
-            .filter(Boolean),
-          stack: stackNode.split(',').map(s => s.trim()),
-        });
-      } catch (e) {
-        console.warn("Could not parse 'cvproject'.");
-      }
+    
+    // Extract frameworks & libraries
+    const frameworksMatch = skillsSection.match(/\\textbf\{Frameworks[^}]*\}\{?\s*:\s*([^}\\]+)/);
+    if (frameworksMatch) {
+      data.skills.frameworksAndLibraries = frameworksMatch[1]
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
     }
-
-    // ---- EDUCATION ----
-    if (node.content === 'cvschool') {
-      try {
-        const args = node.args.map(arg => stringifyLatex(arg.content));
-
-        const [
-          institutionNode,
-          locationNode,
-          qualificationNode,
-          durationNode,
-          detailsNode,
-        ] = args;
-
-        data.education.push({
-          institution: institutionNode,
-          location: locationNode,
-          qualification: qualificationNode,
-          duration: durationNode,
-          details: detailsNode
-            .split('\\item')
-            .map(s => s.trim())
-            .filter(Boolean),
-        });
-      } catch (e) {
-        console.warn("Could not parse 'cvschool'.");
-      }
+    
+    // Extract tools & platforms
+    const toolsMatch = skillsSection.match(/\\textbf\{Tools[^}]*\}\{?\s*:\s*([^}\\]+)/);
+    if (toolsMatch) {
+      data.skills.toolsAndPlatforms = toolsMatch[1]
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
     }
-
-    // ---- SKILLS ----
-    if (node.content === 'cvskills') {
-      try {
-        const args = node.args.map(arg => stringifyLatex(arg.content));
-
-        const [typeNode, skillsNode] = args;
-        const key = typeNode
-          .toLowerCase()
-          .replace(/[^a-zA-Z0-9]+(.)?/g, (match, chr) => chr ? chr.toUpperCase() : '');
-
-        data.skills[key] = skillsNode
-          .split(',')
-          .map(s => s.trim());
-      } catch (e) {
-        console.warn("Could not parse 'cvskills'.");
-      }
-    }
-  });
+  }
 
   await fs.writeJson(outputFilePath, data, { spaces: 2 });
   console.log(`Successfully parsed CV and created ${outputFilePath}`);
