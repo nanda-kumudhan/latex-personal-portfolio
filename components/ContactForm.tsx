@@ -1,15 +1,12 @@
-import { useForm, ValidationError } from '@formspree/react';
+import React from 'react';
 import styles from '../styles/Contact.module.css';
 
 function ContactForm() {
-  const formId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
-  if (!formId) {
-    return <p>Form ID is not configured. Please set NEXT_PUBLIC_FORMSPREE_FORM_ID.</p>
-  }
-  const [state, handleSubmit] = useForm(formId);
-  if (state.succeeded) {
-      return <p>Thanks for your message!</p>;
-  }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    alert("This form is not yet connected. Please connect it to a backend service.");
+  };
+
   return (
       <form onSubmit={handleSubmit} className={styles.form}>
       <label htmlFor="name">
@@ -20,11 +17,7 @@ function ContactForm() {
         type="text" 
         name="name"
         className={styles.input}
-      />
-      <ValidationError 
-        prefix="Name" 
-        field="name"
-        errors={state.errors}
+        required
       />
       <label htmlFor="email">
         Email Address
@@ -34,11 +27,7 @@ function ContactForm() {
         type="email" 
         name="email"
         className={styles.input}
-      />
-      <ValidationError 
-        prefix="Email" 
-        field="email"
-        errors={state.errors}
+        required
       />
       <label htmlFor="message">
         Message
@@ -47,13 +36,9 @@ function ContactForm() {
         id="message"
         name="message"
         className={styles.textarea}
+        required
       />
-      <ValidationError 
-        prefix="Message" 
-        field="message"
-        errors={state.errors}
-      />
-      <button type="submit" disabled={state.submitting} className={styles.button}>
+      <button type="submit" className={styles.button}>
         Submit
       </button>
     </form>
