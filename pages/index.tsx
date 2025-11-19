@@ -1,6 +1,5 @@
 import Head from "next/head";
 import {
-  Container,
   Box,
   Typography,
   Stack,
@@ -11,7 +10,7 @@ import {
   List,
   ListItem,
   ListItemText,
-  Grid,
+  Grid2,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -24,14 +23,13 @@ import portfolioData from "../data/portfolio-data.json";
 import { PortfolioData } from "../data/portfolio";
 
 // ===== STYLED COMPONENTS =====
-const GlassmorphismCard = styled(Box)(({ theme }) => ({
+const GlassmorphismCard = styled(Box)(({ theme }: any) => ({
   background: "rgba(20, 20, 20, 0.6)",
   backdropFilter: "blur(12px)",
   borderRadius: "15px",
   border: "1px solid rgba(255, 255, 255, 0.1)",
   padding: "2.5rem",
   textAlign: "center",
-  maxWidth: "800px",
   width: "100%",
   boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
   transition: "all 0.3s ease",
@@ -42,9 +40,12 @@ const GlassmorphismCard = styled(Box)(({ theme }) => ({
     transform: "translateY(-5px)",
     boxShadow: "0 12px 40px 0 rgba(0, 0, 0, 0.5)",
   },
+  [theme.breakpoints.up("md")]: {
+    maxWidth: "800px",
+  },
 }));
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(({ theme }: any) => ({
   background: "rgba(20, 20, 20, 0.5)",
   backdropFilter: "blur(8px)",
   border: "1px solid rgba(255, 255, 255, 0.1)",
@@ -57,16 +58,19 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const SectionTitle = styled(Typography)(({ theme }) => ({
+const SectionTitle = styled(Typography)(({ theme }: any) => ({
   fontSize: "2.8rem",
   marginBottom: "2rem",
   textAlign: "center",
   fontWeight: 600,
   letterSpacing: "1px",
   color: "#e0e0e0",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "2rem",
+  },
 }));
 
-const ExperienceItem = styled(Box)(({ theme }) => ({
+const ExperienceItem = styled(Box)(({ theme }: any) => ({
   background: "rgba(20, 20, 20, 0.5)",
   backdropFilter: "blur(8px)",
   borderRadius: "10px",
@@ -80,21 +84,21 @@ const ExperienceItem = styled(Box)(({ theme }) => ({
   },
 }));
 
-const SocialLinks = styled(Stack)(({ theme }) => ({
+const SocialLinks = styled(Stack)(({ theme }: any) => ({
   display: "flex",
   justifyContent: "center",
   gap: "1.5rem",
   marginTop: "1.5rem",
 }));
 
-const TechChip = styled(Chip)(({ theme }) => ({
+const TechChip = styled(Chip)(({ theme }: any) => ({
   background: "rgba(0, 112, 243, 0.15)",
   color: "#00aaff",
   fontSize: "0.85rem",
   fontWeight: 500,
 }));
 
-const SkillChip = styled(Chip)(({ theme }) => ({
+const SkillChip = styled(Chip)(({ theme }: any) => ({
   background: "rgba(255, 255, 255, 0.08)",
   color: "#e0e0e0",
   fontSize: "1rem",
@@ -108,7 +112,7 @@ const SkillChip = styled(Chip)(({ theme }) => ({
   },
 }));
 
-const ContactContainer = styled(Box)(({ theme }) => ({
+const ContactContainer = styled(Box)(({ theme }: any) => ({
   background: "rgba(20, 20, 20, 0.6)",
   backdropFilter: "blur(12px)",
   borderRadius: "10px",
@@ -182,7 +186,7 @@ const Home = () => {
             <Typography
               variant="h1"
               sx={{
-                fontSize: "3rem",
+                fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
                 fontWeight: "bold",
                 color: "#e0e0e0",
                 margin: 0,
@@ -193,7 +197,7 @@ const Home = () => {
             </Typography>
             <Typography
               sx={{
-                fontSize: "1.5rem",
+                fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem" },
                 margin: "1rem 0",
                 color: "#d0d0d0",
                 lineHeight: 1.5,
@@ -332,9 +336,9 @@ const Home = () => {
           }}>
             <SectionTitle variant="h2">Projects</SectionTitle>
 
-            <Grid container spacing={2} sx={{ width: "100%" }}>
+            <Grid2 container spacing={2} sx={{ width: "100%" }}>
               {projects.map((project, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                <Grid2 xs={12} sm={6} md={4} lg={3} key={index}>
                   <StyledCard>
                     <CardContent sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
                       <Typography variant="h6" sx={{ color: "#00aaff", marginBottom: "0.5rem" }}>
@@ -380,17 +384,23 @@ const Home = () => {
                       )}
                     </CardContent>
                   </StyledCard>
-                </Grid>
+                </Grid2>
               ))}
-            </Grid>
+            </Grid2>
           </Box>
 
           {/* Skills */}
-          <Box id="skills" sx={{ width: "100%", maxWidth: "800px", margin: "3rem 0" }}>
+          <Box id="skills" sx={{ 
+            width: "100%",
+            margin: "3rem 0",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
             <SectionTitle variant="h2">Skills</SectionTitle>
 
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
+            <Grid2 container spacing={3} sx={{ width: "100%" }}>
+              <Grid2 xs={12} md={6} lg={4}>
                 <Typography variant="h6" sx={{ color: "#00aaff", borderBottom: "2px solid rgba(0, 170, 255, 0.3)", paddingBottom: "0.5rem", marginBottom: "1rem" }}>
                   Languages
                 </Typography>
@@ -399,9 +409,9 @@ const Home = () => {
                     <SkillChip key={index} label={skill} />
                   ))}
                 </Stack>
-              </Grid>
+              </Grid2>
 
-              <Grid item xs={12}>
+              <Grid2 xs={12} md={6} lg={4}>
                 <Typography variant="h6" sx={{ color: "#00aaff", borderBottom: "2px solid rgba(0, 170, 255, 0.3)", paddingBottom: "0.5rem", marginBottom: "1rem" }}>
                   Frameworks & Libraries
                 </Typography>
@@ -410,9 +420,9 @@ const Home = () => {
                     <SkillChip key={index} label={skill} />
                   ))}
                 </Stack>
-              </Grid>
+              </Grid2>
 
-              <Grid item xs={12}>
+              <Grid2 xs={12} md={6} lg={4}>
                 <Typography variant="h6" sx={{ color: "#00aaff", borderBottom: "2px solid rgba(0, 170, 255, 0.3)", paddingBottom: "0.5rem", marginBottom: "1rem" }}>
                   Tools & Platforms
                 </Typography>
@@ -421,12 +431,18 @@ const Home = () => {
                     <SkillChip key={index} label={skill} />
                   ))}
                 </Stack>
-              </Grid>
-            </Grid>
+              </Grid2>
+            </Grid2>
           </Box>
 
           {/* Contact */}
-          <Box id="contact" sx={{ width: "100%", maxWidth: "800px", margin: "3rem 0" }}>
+          <Box id="contact" sx={{ 
+            width: "100%",
+            margin: "3rem 0",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
             <SectionTitle variant="h2">Contact Me</SectionTitle>
             <ContactContainer>
               <ContactForm />
