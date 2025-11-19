@@ -89,7 +89,7 @@ async function parseCv() {
   }
 
   // ===== PROJECTS =====
-  const projectsMatch = fileContent.match(/%-----------PROJECTS-----------\n([\s\S]*?)%-----------TECHNICAL SKILLS-----------/);
+  const projectsMatch = fileContent.match(/%-----------PROJECTS-----------\n([\s\S]*?)%-----------TECHNICAL SKILLS/);
   if (projectsMatch) {
     const projectsSection = projectsMatch[1];
     const projectRegex = /\\resumeProjectHeading\s*\{([^}]+)\}\s*\{([^}]+)\}([\s\S]*?)(?=\\resumeProjectHeading|\s*\\resumeSubHeadingListEnd)/g;
