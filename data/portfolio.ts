@@ -4,6 +4,7 @@ export interface Project {
   stack: string[];
   link?: string;
   date: string;
+  module?: string;
 }
 
 export interface Experience {

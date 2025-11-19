@@ -1,7 +1,14 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { projects, experience, skills, education } from '../data/portfolio';
+import portfolioData from '../data/portfolio-data.json';
+import {
+  Project,
+  Experience,
+  Education,
+} from '../data/portfolio';
+
+const { education, experience, projects, skills } = portfolioData;
 import Navbar from '../components/Navbar';
 import ContactForm from '../components/ContactForm';
 

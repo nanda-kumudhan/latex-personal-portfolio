@@ -1,0 +1,179 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Adapted for Nanda Kumudhan
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Nanda Kumudhan} \\ \vspace{1pt}
+    \small Loughborough, UK $|$ +44 7532 609790 $|$ 
+    \href{mailto:nandakumudhan9@gmail.com}{\underline{nandakumudhan9@gmail.com}} $|$ 
+    \href{https://linkedin.com/in/nanda-kumudhan}{\underline{linkedin.com/in/nanda-kumudhan}} $|$
+    \href{https://github.com/nanda-kumudhan}{\underline{github.com/nanda-kumudhan}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Loughborough University}{Loughborough, UK}
+      {BSc Computer Science and Artificial Intelligence}{Sept 2024 -- June 2028}
+      \resumeItemListStart
+        \resumeItem{Year 1: 2:1 (Top 20\% of cohort)}
+        \resumeItem{Key modules: Data Structures \& Algorithms, Embedded Systems Programming (75\%), Software Engineering (75\%), Operating Systems, Networks}
+        \resumeItem{Full-stack PHP/JS Healthcare Portal — 89\%}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {West Bridgford School}{Nottingham, UK}
+      {A Levels (120 UCAS Points)}{2022 -- 2024}
+      \resumeItemListStart
+        \resumeItem{Subjects: Mathematics (B), Physics (B), Computer Science (B)}
+        \resumeItem{Flask E-commerce Bike Sales Web App — 100\%}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Software Developer (Freelance)}{Remote}
+      {Dental Parts Sales Business}{Jan 2023 -- May 2023}
+      \resumeItemListStart
+        \resumeItem{Designed and implemented a full-stack inventory and sales dashboard using \textbf{Python, JavaScript, TypeScript, Flask, and Chart.js}, enabling real-time reporting and analytics}
+        \resumeItem{Automated invoice generation, stock alerts, and sales summaries, saving 30+ hours of manual work per month}
+        \resumeItem{Integrated a lightweight database using \textbf{PostgreSQL} with efficient query optimization for faster lookup and reporting}
+        \resumeItem{Developed interactive charts and visualizations to track sales trends, inventory levels, and customer orders, improving decision-making accuracy}
+        \resumeItem{Managed deployment, version control (\textbf{Git}), and incremental updates to ensure smooth operations without downtime}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Front-of-House Receptionist}{Korma Sutra Indian Restaurant, Nottingham, UK}
+      {Customer Service \& Operations}{Jun 2022 -- Sep 2024}
+      \resumeItemListStart
+        \resumeItem{Managed bookings, reservations, and customer interactions efficiently}
+        \resumeItem{Assisted in POS operations and basic reporting tasks}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+  \resumeSubHeadingListStart
+
+    \resumeProjectHeading
+      {\textbf{Smart Study Assistant} $|$ \emph{JavaScript, TypeScript, React, Node.js, Panopto}}{Sept 2024 -- Present}
+      \resumeItemListStart
+        \resumeItem{Founded AI-powered study platform delivering notes and quizzes via \textbf{OpenAI API}, supporting active users}
+        \resumeItem{Automated lecture content retrieval, transcription, and summarization using \textbf{Panopto}, reducing manual effort by 80\%}
+        \resumeItem{Built scalable, responsive \textbf{React/TypeScript} frontend for optimal user experience}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\textbf{JP Morgan Software Engineering Simulation} $|$ \emph{Java, Spring Boot}}{June 2024}
+      \resumeItemListStart
+        \resumeItem{Developed backend transaction system simulating real-world banking operations including fraud detection}
+        \resumeItem{Implemented unit/integration testing and robust logging, increasing reliability and reducing runtime errors by 30\%}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Java, Python, C/C++, JavaScript, TypeScript, PHP, SQL (Postgres/MySQL), HTML/CSS} \\
+     \textbf{Frameworks \& Libraries}{: React, Node.js, Flask, FastAPI, Bootstrap, Tailwind, Spring Boot, Panopto, pandas, NumPy, Matplotlib} \\
+     \textbf{Tools \& Platforms}{: Git, Google Cloud Platform, Firebase, Supabase}
+    }}
+ \end{itemize}
+
+\end{document}
