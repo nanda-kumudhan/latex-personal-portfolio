@@ -2,13 +2,13 @@ import { createTheme } from '@mui/material/styles';
 
 // Central glass tokens for reuse
 export const glassTokens = {
-  baseBg: 'rgba(25,25,30,0.55)',
-  heroGradient: 'linear-gradient(135deg, rgba(25,25,30,0.65) 0%, rgba(35,55,70,0.6) 100%)',
-  border: '1px solid rgba(255,255,255,0.08)',
-  borderStrong: '1px solid rgba(255,255,255,0.12)',
-  shadowSm: '0 6px 24px rgba(0,0,0,0.45)',
-  shadowMd: '0 8px 32px rgba(0,0,0,0.5)',
-  shadowLg: '0 12px 48px rgba(0,0,0,0.65)',
+  baseBg: 'rgba(20,24,40,0.6)',
+  heroGradient: 'linear-gradient(135deg, rgba(10,25,50,0.7) 0%, rgba(25,40,70,0.65) 100%)',
+  border: '1px solid rgba(0,170,255,0.15)',
+  borderStrong: '1px solid rgba(0,170,255,0.25)',
+  shadowSm: '0 6px 24px rgba(0,100,200,0.2)',
+  shadowMd: '0 8px 32px rgba(0,120,220,0.25)',
+  shadowLg: '0 12px 48px rgba(0,150,255,0.3)',
   blur: 'blur(14px)',
   blurStrong: 'blur(18px)'
 };
@@ -16,10 +16,13 @@ export const glassTokens = {
 const theme = createTheme({
   palette: {
     mode: 'dark',
-    primary: { main: '#00aaff' },
+    primary: { main: '#00d4ff' },
+    secondary: { main: '#ff006e' },
+    success: { main: '#10b981' },
+    warning: { main: '#f59e0b' },
     background: {
-      default: '#0f2027',
-      paper: 'rgba(20,20,20,0.55)'
+      default: '#0f1419',
+      paper: 'rgba(20,24,40,0.6)'
     }
   },
   typography: {
