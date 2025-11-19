@@ -66,18 +66,21 @@ const Navbar = () => {
             className={styles.desktopNav}
             aria-hidden={open ? 'true' : 'false'}
           >
-            {sections.map(section => (
-              <Link key={section} href={`#${section}`} passHref legacyBehavior>
-                <a
-                  className={`${styles.navLink} ${
-                    active === section ? styles.active : ''
-                  }`}
-                  onClick={() => handleNavClick(section)}
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </a>
-              </Link>
-            ))}
+            {sections.map(section => {
+              const href = section === 'home' ? '/' : `#${section}`;
+              return (
+                <Link key={section} href={href} passHref legacyBehavior>
+                  <a
+                    className={`${styles.navLink} ${
+                      active === section ? styles.active : ''
+                    }`}
+                    onClick={() => section !== 'home' && handleNavClick(section)}
+                  >
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </a>
+                </Link>
+              );
+            })}
           </Flex>
 
           {/* Mobile Menu Button */}
@@ -121,18 +124,33 @@ const Navbar = () => {
                 </Flex>
 
                 <Box className={styles.mobileMenu}>
-                  {sections.map(section => (
-                    <button
-                      key={section}
-                      className={`${styles.mobileMenuItem} ${
-                        active === section ? styles.mobileMenuItemActive : ''
-                      }`}
-                      onClick={() => handleNavClick(section)}
-                      aria-label={`Go to ${section} section`}
-                    >
-                      {section.charAt(0).toUpperCase() + section.slice(1)}
-                    </button>
-                  ))}
+                  {sections.map(section => {
+                    const href = section === 'home' ? '/' : `#${section}`;
+                    return section === 'home' ? (
+                      <Link key={section} href={href} passHref legacyBehavior>
+                        <a
+                          className={`${styles.mobileMenuItem} ${
+                            active === section ? styles.mobileMenuItemActive : ''
+                          }`}
+                          aria-label={`Go to ${section} section`}
+                          onClick={() => handleClose()}
+                        >
+                          {section.charAt(0).toUpperCase() + section.slice(1)}
+                        </a>
+                      </Link>
+                    ) : (
+                      <button
+                        key={section}
+                        className={`${styles.mobileMenuItem} ${
+                          active === section ? styles.mobileMenuItemActive : ''
+                        }`}
+                        onClick={() => handleNavClick(section)}
+                        aria-label={`Go to ${section} section`}
+                      >
+                        {section.charAt(0).toUpperCase() + section.slice(1)}
+                      </button>
+                    );
+                  })}
                 </Box>
               </Dialog.Content>
             </Dialog.Portal>
