@@ -146,7 +146,7 @@ const Home = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: "5rem 2rem 2rem",
+          padding: "5rem 1rem 2rem",
           background: "linear-gradient(to right, #0f2027, #203a43, #2c5364)",
         }}
       >
@@ -156,13 +156,25 @@ const Home = () => {
           <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         </Head>
 
-        <Container
-          maxWidth="md"
+        <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            width: "100%",
+            maxWidth: {
+              xs: "100%",
+              sm: "90%",
+              md: "85%",
+              lg: "1200px",
+              xl: "1400px",
+            },
+            paddingX: {
+              xs: "1rem",
+              sm: "1.5rem",
+              md: "2rem",
+            },
           }}
         >
           {/* Hero Section */}
@@ -215,92 +227,114 @@ const Home = () => {
           </GlassmorphismCard>
 
           {/* Education */}
-          <Box id="education" sx={{ width: "100%", maxWidth: "800px", margin: "3rem 0" }}>
+          <Box id="education" sx={{ 
+            width: "100%",
+            margin: "3rem 0",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
             <SectionTitle variant="h2">Education</SectionTitle>
 
-            {education.map((edu, index) => (
-              <ExperienceItem key={index}>
-                <Typography variant="h5" sx={{ color: "#00aaff", margin: 0 }}>
-                  {edu.institution}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: "1.1rem",
-                    fontWeight: "bold",
-                    color: "#ccc",
-                    margin: "0.25rem 0",
-                  }}
-                >
-                  {edu.qualification}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontStyle: "italic",
-                    color: "#aaa",
-                    margin: "0.25rem 0 1rem 0",
-                  }}
-                >
-                  {edu.location} | {edu.duration}
-                </Typography>
+            <Box sx={{ width: "100%" }}>
+              {education.map((edu, index) => (
+                <ExperienceItem key={index}>
+                  <Typography variant="h5" sx={{ color: "#00aaff", margin: 0 }}>
+                    {edu.institution}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "1.1rem",
+                      fontWeight: "bold",
+                      color: "#ccc",
+                      margin: "0.25rem 0",
+                    }}
+                  >
+                    {edu.qualification}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontStyle: "italic",
+                      color: "#aaa",
+                      margin: "0.25rem 0 1rem 0",
+                    }}
+                  >
+                    {edu.location} | {edu.duration}
+                  </Typography>
 
-                <List sx={{ color: "#d0d0d0" }}>
-                  {edu.details.map((detail, i) => (
-                    <ListItem key={i} sx={{ paddingLeft: 0 }}>
-                      <ListItemText primary={detail} />
-                    </ListItem>
-                  ))}
-                </List>
-              </ExperienceItem>
-            ))}
+                  <List sx={{ color: "#d0d0d0" }}>
+                    {edu.details.map((detail, i) => (
+                      <ListItem key={i} sx={{ paddingLeft: 0 }}>
+                        <ListItemText primary={detail} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </ExperienceItem>
+              ))}
+            </Box>
           </Box>
 
           {/* Experience */}
-          <Box id="experience" sx={{ width: "100%", maxWidth: "800px", margin: "3rem 0" }}>
+          <Box id="experience" sx={{ 
+            width: "100%",
+            margin: "3rem 0",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
             <SectionTitle variant="h2">Experience</SectionTitle>
 
-            {experience.map((exp, index) => (
-              <ExperienceItem key={index}>
-                <Typography variant="h5" sx={{ color: "#00aaff", margin: 0 }}>
-                  {exp.role}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: "1.1rem",
-                    fontWeight: "bold",
-                    color: "#ccc",
-                    margin: "0.25rem 0",
-                  }}
-                >
-                  {exp.company}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontStyle: "italic",
-                    color: "#aaa",
-                    margin: "0.25rem 0 1rem 0",
-                  }}
-                >
-                  {exp.duration}
-                </Typography>
+            <Box sx={{ width: "100%" }}>
+              {experience.map((exp, index) => (
+                <ExperienceItem key={index}>
+                  <Typography variant="h5" sx={{ color: "#00aaff", margin: 0 }}>
+                    {exp.role}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "1.1rem",
+                      fontWeight: "bold",
+                      color: "#ccc",
+                      margin: "0.25rem 0",
+                    }}
+                  >
+                    {exp.company}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontStyle: "italic",
+                      color: "#aaa",
+                      margin: "0.25rem 0 1rem 0",
+                    }}
+                  >
+                    {exp.duration}
+                  </Typography>
 
-                <List sx={{ color: "#d0d0d0" }}>
-                  {exp.description.map((item, i) => (
-                    <ListItem key={i} sx={{ paddingLeft: 0 }}>
-                      <ListItemText primary={item} />
-                    </ListItem>
-                  ))}
-                </List>
-              </ExperienceItem>
-            ))}
+                  <List sx={{ color: "#d0d0d0" }}>
+                    {exp.description.map((item, i) => (
+                      <ListItem key={i} sx={{ paddingLeft: 0 }}>
+                        <ListItemText primary={item} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </ExperienceItem>
+              ))}
+            </Box>
           </Box>
 
           {/* Projects */}
-          <Box id="projects" sx={{ width: "100%", maxWidth: "800px", margin: "3rem 0" }}>
+          <Box id="projects" sx={{ 
+            width: "100%",
+            margin: "3rem 0",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
             <SectionTitle variant="h2">Projects</SectionTitle>
 
-            <Grid container spacing={2}>
+            <Grid container spacing={2} sx={{ width: "100%" }}>
               {projects.map((project, index) => (
-                <Grid item xs={12} sm={6} key={index}>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                   <StyledCard>
                     <CardContent sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
                       <Typography variant="h6" sx={{ color: "#00aaff", marginBottom: "0.5rem" }}>
@@ -311,14 +345,15 @@ const Home = () => {
                           fontStyle: "italic",
                           color: "#aaa",
                           marginBottom: "1rem",
+                          fontSize: "0.9rem",
                         }}
                       >
                         {project.date}
                       </Typography>
 
-                      <List sx={{ color: "#d0d0d0", marginBottom: "1rem", flex: 1 }}>
+                      <List sx={{ color: "#d0d0d0", marginBottom: "1rem", flex: 1, paddingLeft: 0 }}>
                         {project.description.map((item, i) => (
-                          <ListItem key={i} sx={{ paddingLeft: 0 }}>
+                          <ListItem key={i} sx={{ paddingLeft: 0, fontSize: "0.9rem" }}>
                             <ListItemText primary={item} />
                           </ListItem>
                         ))}
@@ -397,7 +432,7 @@ const Home = () => {
               <ContactForm />
             </ContactContainer>
           </Box>
-        </Container>
+        </Box>
       </Box>
     </>
   );

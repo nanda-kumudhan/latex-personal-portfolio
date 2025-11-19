@@ -32,7 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/fs-extra": "^11.0.4",
-    "eslint": "^8",
+    "eslint": "^9",
     "eslint-config-next": "16.0.3"
   }
 }
