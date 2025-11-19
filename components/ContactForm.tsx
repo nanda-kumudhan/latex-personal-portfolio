@@ -1,6 +1,17 @@
-import React from 'react';
-import { TextField, Button, Stack } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { TextField, Button, Stack, Alert, CircularProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import emailjs from '@emailjs/browser';
+
+// Initialize EmailJS (replace with your public key)
+// Get your keys from: https://dashboard.emailjs.com/
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
+
+if (EMAILJS_PUBLIC_KEY) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
@@ -36,11 +47,58 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
 function ContactForm() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [formData, setFormData] = useState<FormData>({ name: '', email: '', message: '' });
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('📧 [FORM] Contact form submitted');
-    alert("This form is not yet connected. Please connect it to a backend service.");
+    
+    if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+      console.error('❌ [FORM] EmailJS credentials not configured');
+      setMessage({ type: 'error', text: 'Email service not configured. Please try again later.' });
+      return;
+    }
+
+    setLoading(true);
+    setMessage(null);
+    console.log('📧 [FORM] Sending contact form...');
+
+    try {
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          to_email: formData.email,
+          user_name: formData.name,
+          user_email: formData.email,
+          message: formData.message,
+        }
+      );
+
+      if (response.status === 200) {
+        console.log('✅ [FORM] Email sent successfully');
+        setMessage({ type: 'success', text: 'Message sent successfully! I\'ll get back to you soon.' });
+        setFormData({ name: '', email: '', message: '' });
+      }
+    } catch (error) {
+      console.error('❌ [FORM] Failed to send email:', error);
+      setMessage({ type: 'error', text: 'Failed to send message. Please try again.' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,6 +108,11 @@ function ContactForm() {
       spacing={2}
       sx={{ width: '100%' }}
     >
+      {message && (
+        <Alert severity={message.type} sx={{ background: message.type === 'success' ? 'rgba(76, 175, 80, 0.2)' : 'rgba(244, 67, 54, 0.2)' }}>
+          {message.text}
+        </Alert>
+      )}
       <StyledTextField
         id="name"
         type="text"
@@ -58,6 +121,9 @@ function ContactForm() {
         variant="outlined"
         fullWidth
         required
+        value={formData.name}
+        onChange={handleChange}
+        disabled={loading}
         InputLabelProps={{
           sx: { color: '#ccc' },
         }}
@@ -70,6 +136,9 @@ function ContactForm() {
         variant="outlined"
         fullWidth
         required
+        value={formData.email}
+        onChange={handleChange}
+        disabled={loading}
         InputLabelProps={{
           sx: { color: '#ccc' },
         }}
@@ -83,12 +152,15 @@ function ContactForm() {
         multiline
         rows={6}
         required
+        value={formData.message}
+        onChange={handleChange}
+        disabled={loading}
         InputLabelProps={{
           sx: { color: '#ccc' },
         }}
       />
-      <StyledButton type="submit" variant="contained">
-        Submit
+      <StyledButton type="submit" variant="contained" disabled={loading}>
+        {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Submit'}
       </StyledButton>
     </Stack>
   );

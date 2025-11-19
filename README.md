@@ -20,10 +20,36 @@ A modern, fully responsive portfolio website that automatically generates conten
 - **Optimized Grid**: Projects display 1→2→3→4 columns across breakpoints; skills in 1→3 columns
 - **Dark Theme**: Sleek gradient background with glassmorphism cards
 - **Fast Build**: Parser runs in prebuild step; Vercel detects and caches automatically
+- **Contact Form**: EmailJS integration for contact form submissions
 
 ## Updating Your Portfolio
 
 Your portfolio content is generated directly from `data/cv.tex` at build time. To update your portfolio, simply edit the CV file.
+
+## Setting Up the Contact Form
+
+The contact form uses **EmailJS** to send emails directly from the browser without a backend server.
+
+### Steps to Configure EmailJS
+
+1. **Create an EmailJS account** at [https://www.emailjs.com/](https://www.emailjs.com/)
+2. **Create an Email Service** (Gmail, Outlook, etc.) and note the `Service ID`
+3. **Create an Email Template** with variables `{user_name}`, `{user_email}`, `{message}`, and note the `Template ID`
+4. **Get your Public Key** from the dashboard
+5. **Create a `.env.local` file** in the root directory:
+
+   ```env
+   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+   ```
+
+   (See `.env.local.example` for reference)
+
+6. **Deploy to Vercel** and add the same environment variables in Vercel's project settings
+7. The contact form will now send emails when users submit messages
+
+⚠️ **Note**: These are public credentials (prefixed with `NEXT_PUBLIC_`). EmailJS handles security via rate limiting and service configuration—do not commit `.env.local` to version control.
 
 ### CV Structure
 
