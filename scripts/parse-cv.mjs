@@ -102,38 +102,56 @@ async function parseCv() {
 
   // ===== PROJECTS =====
   console.log('📂 [PARSER] Extracting projects section...');
-  // Find content between PROJECTS and TECHNICAL SKILLS markers
   const projectsStartIdx = fileContent.indexOf('%-----------PROJECTS-----------');
   const projectsEndIdx = fileContent.indexOf('%-----------TECHNICAL SKILLS-----------');
+  
+  console.log(`  Index positions - Start: ${projectsStartIdx}, End: ${projectsEndIdx}`);
   
   if (projectsStartIdx !== -1 && projectsEndIdx !== -1) {
     console.log('✅ [PARSER] Projects section found');
     const projectsSection = fileContent.substring(projectsStartIdx, projectsEndIdx);
-    console.log(`📝 [PARSER] Projects section length: ${projectsSection.length} characters`);
-    console.log(`📝 [PARSER] Projects section preview:\n${projectsSection.substring(0, 300)}...`);
+    console.log(`  📝 Section size: ${projectsSection.length} characters`);
     
-    // Match: \resumeProjectHeading{heading}{date} pattern
-    const projectRegex = /\\resumeProjectHeading\s*\{\s*([^}]+?)\s*\}\s*\{\s*([^}]+?)\s*\}([\s\S]*?)(?=\\resumeProjectHeading|\\resumeSubHeadingListEnd)/g;
+    // Split by resumeProjectHeading to find individual projects
+    const projects = projectsSection.split('\\resumeProjectHeading');
+    console.log(`  🔍 Found ${projects.length - 1} potential projects (split by \\resumeProjectHeading)`);
     
-    let match;
-    let projectCount = 0;
-    let regexTest = projectRegex.test(projectsSection);
-    console.log(`🔍 [PARSER] Regex test result: ${regexTest}`);
-    
-    // Reset regex state after test
-    projectRegex.lastIndex = 0;
-    
-    while ((match = projectRegex.exec(projectsSection)) !== null) {
-      projectCount++;
-      const [, heading, date, itemsText] = match;
-      console.log(`  ✓ Found match #${projectCount}: "${heading.substring(0, 40)}..." dated "${date}"`);
+    for (let i = 1; i < projects.length; i++) {
+      const projectText = projects[i];
+      console.log(`\n  Project #${i}:`);
       
-      // Parse heading: \textbf{Name} $|$ \emph{Tech1, Tech2, Tech3}
-      const headingMatch = heading.match(/\\textbf\s*\{\s*([^}]+)\s*\}\s*\$\|\$\s*\\emph\s*\{\s*([^}]+)\s*\}/);
-      const name = headingMatch ? headingMatch[1].trim() : heading.trim();
-      const stackStr = headingMatch ? headingMatch[2].trim() : '';
+      // Extract heading and date using a more flexible pattern
+      const firstBraceEnd = projectText.indexOf('}');
+      const secondBraceStart = projectText.indexOf('{', firstBraceEnd);
+      const secondBraceEnd = projectText.indexOf('}', secondBraceStart);
       
-      console.log(`    Name: "${name}", Stack: "${stackStr}"`);
+      if (firstBraceEnd === -1 || secondBraceStart === -1 || secondBraceEnd === -1) {
+        console.log(`    ⚠️  Malformed - missing braces, skipping`);
+        continue;
+      }
+      
+      const heading = projectText.substring(1, firstBraceEnd);
+      const date = projectText.substring(secondBraceStart + 1, secondBraceEnd);
+      const itemsText = projectText.substring(secondBraceEnd + 1);
+      
+      console.log(`    Raw heading: ${heading.substring(0, 70)}...`);
+      console.log(`    Date: ${date}`);
+      
+      // Parse heading to extract name and tech
+      let name = 'Untitled Project';
+      let stackStr = '';
+      
+      const textbfMatch = heading.match(/\\textbf\s*\{\s*([^}]+)\s*\}/);
+      if (textbfMatch) {
+        name = textbfMatch[1].trim();
+        console.log(`    ✓ Name: ${name}`);
+      }
+      
+      const emphMatch = heading.match(/\\emph\s*\{\s*([^}]+)\s*\}/);
+      if (emphMatch) {
+        stackStr = emphMatch[1].trim();
+        console.log(`    ✓ Tech stack: ${stackStr}`);
+      }
       
       const stack = stackStr
         .split(',')
@@ -142,25 +160,32 @@ async function parseCv() {
       
       // Extract resumeItems
       const description = [];
-      const itemRegex = /\\resumeItem\s*\{\s*([^}]+)\s*\}/g;
+      const itemRegex = /\\resumeItem\s*\{\s*([^}]+?)\s*\}/g;
       let itemMatch;
       while ((itemMatch = itemRegex.exec(itemsText)) !== null) {
         description.push(itemMatch[1].trim());
       }
       
-      data.projects.push({
-        name: name || 'Untitled Project',
-        date: date.trim(),
-        description,
-        stack,
-      });
-      console.log(`  📌 [PARSER] Added project: ${name || 'Untitled Project'} (${stack.length} tech items, ${description.length} bullets)`);
+      console.log(`    ✓ Found ${description.length} bullet points`);
+      
+      if (name && name !== 'Untitled Project') {
+        data.projects.push({
+          name,
+          date: date.trim(),
+          description,
+          stack,
+        });
+        console.log(`    ✅ ADDED to data`);
+      } else {
+        console.log(`    ❌ Skipped - invalid name`);
+      }
     }
-    console.log(`  ✓ Total projects extracted: ${projectCount}`);
+    
+    console.log(`\n  Final projects count: ${data.projects.length}`);
   } else {
-    console.log('❌ [PARSER] Could not find Projects section boundaries');
-    console.log(`  Projects marker at: ${projectsStartIdx}`);
-    console.log(`  Skills marker at: ${projectsEndIdx}`);
+    console.log('❌ [PARSER] Projects section NOT found');
+    console.log(`  Start marker found: ${projectsStartIdx !== -1}`);
+    console.log(`  End marker found: ${projectsEndIdx !== -1}`);
   }
 
   // ===== SKILLS =====
