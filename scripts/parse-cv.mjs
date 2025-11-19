@@ -4,6 +4,10 @@ import { visit } from '@unified-latex/unified-latex-util-visit';
 import fs from 'fs-extra';
 import path from 'path';
 
+console.log('\n=====================================');
+console.log('   🚀 CV PARSER STARTING');
+console.log('=====================================\n');
+
 // Replacement for toString() – safe & simple
 const stringifyLatex = (nodes) => {
   if (!Array.isArray(nodes)) return '';
@@ -116,23 +120,44 @@ async function parseCv() {
     const projects = projectsSection.split('\\resumeProjectHeading');
     console.log(`  🔍 Found ${projects.length - 1} potential projects (split by \\resumeProjectHeading)`);
     
+    // Helper: extract content of a balanced-brace group starting at the first '{'
+    const extractBraced = (text, from = 0) => {
+      const start = text.indexOf('{', from);
+      if (start === -1) return null;
+      let depth = 0;
+      for (let i = start; i < text.length; i++) {
+        const ch = text[i];
+        if (ch === '{') depth++;
+        else if (ch === '}') {
+          depth--;
+          if (depth === 0) {
+            return { content: text.slice(start + 1, i), endIndex: i };
+          }
+        }
+      }
+      return null;
+    };
+
     for (let i = 1; i < projects.length; i++) {
       const projectText = projects[i];
       console.log(`\n  Project #${i}:`);
       
-      // Extract heading and date using a more flexible pattern
-      const firstBraceEnd = projectText.indexOf('}');
-      const secondBraceStart = projectText.indexOf('{', firstBraceEnd);
-      const secondBraceEnd = projectText.indexOf('}', secondBraceStart);
-      
-      if (firstBraceEnd === -1 || secondBraceStart === -1 || secondBraceEnd === -1) {
-        console.log(`    ⚠️  Malformed - missing braces, skipping`);
+      // Extract first argument (heading) and second (date) with brace balancing
+      const firstArg = extractBraced(projectText);
+      if (!firstArg) {
+        console.log('    ⚠️  Could not find first braced argument (heading)');
         continue;
       }
-      
-      const heading = projectText.substring(1, firstBraceEnd);
-      const date = projectText.substring(secondBraceStart + 1, secondBraceEnd);
-      const itemsText = projectText.substring(secondBraceEnd + 1);
+
+      const secondArg = extractBraced(projectText, firstArg.endIndex + 1);
+      if (!secondArg) {
+        console.log('    ⚠️  Could not find second braced argument (date)');
+        continue;
+      }
+
+      const heading = firstArg.content;
+      const date = secondArg.content;
+      const itemsText = projectText.substring(secondArg.endIndex + 1);
       
       console.log(`    Raw heading: ${heading.substring(0, 70)}...`);
       console.log(`    Date: ${date}`);
@@ -231,7 +256,13 @@ async function parseCv() {
   console.log(`  ✓ Languages: ${data.skills.languages.length}`);
   console.log(`  ✓ Frameworks: ${data.skills.frameworksAndLibraries.length}`);
   console.log(`  ✓ Tools: ${data.skills.toolsAndPlatforms.length}`);
-  console.log(`✅ [PARSER] Successfully created ${outputFilePath}\n`);
+  console.log(`✅ [PARSER] Successfully created ${outputFilePath}`);
+  console.log('\n=====================================');
+  console.log('   ✨ CV PARSER COMPLETE');
+  console.log('=====================================\n');
 }
 
-parseCv();
+parseCv().catch(err => {
+  console.error('❌ [PARSER] Fatal error:', err);
+  process.exit(1);
+});
