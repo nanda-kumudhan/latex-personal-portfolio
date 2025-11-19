@@ -10,8 +10,8 @@ import {
   List,
   ListItem,
   ListItemText,
-  Grid2,
 } from "@mui/material";
+import Grid2 from "@mui/material/Grid2";
 import { styled } from "@mui/material/styles";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
