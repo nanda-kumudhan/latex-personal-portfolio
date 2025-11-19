@@ -19,7 +19,7 @@
     "unified": "^11.0.4",
     "@unified-latex/unified-latex-util-parse": "^1.2.1",
     "@unified-latex/unified-latex-util-visit": "^1.2.1",
-    "@unified-latex/unified-latex-util-source": "^1.2.1",
+    "@unified-latex/unified-latex-builder": "^1.2.1",
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {
