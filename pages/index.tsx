@@ -48,7 +48,7 @@ const Home = () => {
                 <FaGithub size={30} />
               </a>
               <a
-                href="https://linkedin.com/in/nanda-kumudhan"
+                href="https://www.linkedin.com/in/nanda-kumudhan"
                 target="_blank"
                 rel="noopener noreferrer"
               >
