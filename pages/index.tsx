@@ -125,6 +125,16 @@ const Home = () => {
   const data = portfolioData as Partial<PortfolioData>;
   const { education = [], experience = [], projects = [], skills = { languages: [], frameworksAndLibraries: [], toolsAndPlatforms: [] } } = data;
 
+  // Log component mount and data
+  if (typeof window !== 'undefined') {
+    console.log('🎨 [PAGE] Portfolio page loaded');
+    console.log(`📊 [PAGE] Data loaded:`);
+    console.log(`  - Education: ${education.length} entries`);
+    console.log(`  - Experience: ${experience.length} entries`);
+    console.log(`  - Projects: ${projects.length} entries`);
+    console.log(`  - Skills: ${skills.languages.length + skills.frameworksAndLibraries.length + skills.toolsAndPlatforms.length} total`);
+  }
+
   return (
     <>
       <Navbar />

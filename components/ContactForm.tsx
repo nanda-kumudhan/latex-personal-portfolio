@@ -39,6 +39,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 function ContactForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log('📧 [FORM] Contact form submitted');
     alert("This form is not yet connected. Please connect it to a backend service.");
   };
 

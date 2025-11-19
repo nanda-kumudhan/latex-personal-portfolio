@@ -26,6 +26,10 @@ const StyledLink = styled('a')(({ theme }) => ({
 }));
 
 const Navbar = () => {
+  if (typeof window !== 'undefined') {
+    console.log('🔗 [NAVBAR] Navigation component mounted');
+  }
+  
   return (
     <StyledAppBar>
       <Toolbar sx={{ justifyContent: 'center' }}>
