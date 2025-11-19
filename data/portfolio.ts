@@ -22,6 +22,17 @@ export interface Education {
   details: string[];
 }
 
+export interface PortfolioData {
+  projects: Project[];
+  experience: Experience[];
+  education: Education[];
+  skills: {
+    languages: string[];
+    frameworksAndLibraries: string[];
+    toolsAndPlatforms: string[];
+  };
+}
+
 export const education: Education[] = [
   {
     institution: 'Loughborough University',
