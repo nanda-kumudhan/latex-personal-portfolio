@@ -119,7 +119,9 @@ async function parseCv() {
         const args = node.args.map(arg => stringifyLatex(arg.content));
 
         const [typeNode, skillsNode] = args;
-        const key = typeNode.toLowerCase().replace(/\s+/g, '');
+        const key = typeNode
+          .toLowerCase()
+          .replace(/[^a-zA-Z0-9]+(.)?/g, (match, chr) => chr ? chr.toUpperCase() : '');
 
         data.skills[key] = skillsNode
           .split(',')
