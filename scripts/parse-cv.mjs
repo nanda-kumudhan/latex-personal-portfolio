@@ -89,56 +89,42 @@ async function parseCv() {
   }
 
   // ===== PROJECTS =====
-  const projectsMatch = fileContent.match(/%-----------PROJECTS-----------[\s\S]*?\\section\{Projects\}([\s\S]*?)%-----------TECHNICAL SKILLS/);
+  const projectsMatch = fileContent.match(/%-----------PROJECTS-----------[\s\S]*?\n([\s\S]*?)%-----------TECHNICAL SKILLS/);
   if (projectsMatch) {
     const projectsSection = projectsMatch[1];
-    console.log('[DEBUG] Projects section found:', projectsSection.length, 'chars');
-    // Match: \resumeProjectHeading{heading}{date} followed by items until next project or list end
-    const projectRegex = /\\resumeProjectHeading\s*\{([^}]+)\}\s*\{([^}]+)\}\s*([\s\S]*?)(?=\\resumeProjectHeading|\\resumeSubHeadingListEnd)/g;
+    
+    // Match: \resumeProjectHeading with flexible whitespace handling
+    const projectRegex = /\\resumeProjectHeading\s*\{\s*([^}]+?)\s*\}\s*\{\s*([^}]+?)\s*\}([\s\S]*?)(?=\\resumeProjectHeading|\\resumeSubHeadingListEnd)/g;
     
     let match;
-    let projectCount = 0;
     while ((match = projectRegex.exec(projectsSection)) !== null) {
-      projectCount++;
       const [, heading, date, itemsText] = match;
-      console.log('[DEBUG] Found project #' + projectCount + ' - heading:', heading.substring(0, 80));
       
       // Parse heading: \textbf{Name} $|$ \emph{Tech1, Tech2, Tech3}
-      // Note: heading contains $|$ (literal dollar-pipe-dollar), not \$|\$
-      const headingMatch = heading.match(/\\textbf\{([^}]+)\}\s*\$\|\$\s*\\emph\{([^}]+)\}/);
+      const headingMatch = heading.match(/\\textbf\s*\{\s*([^}]+)\s*\}\s*\$\|\$\s*\\emph\s*\{\s*([^}]+)\s*\}/);
       const name = headingMatch ? headingMatch[1].trim() : heading.trim();
-      const stackStr = headingMatch ? headingMatch[2] : '';
-      
-      console.log('[DEBUG] Parsed name:', name, 'stack:', stackStr);
+      const stackStr = headingMatch ? headingMatch[2].trim() : '';
       
       const stack = stackStr
         .split(',')
         .map(s => s.trim())
         .filter(Boolean);
       
-      // Extract resumeItems - look between \resumeItemListStart and \resumeItemListEnd
+      // Extract resumeItems
       const description = [];
-      const itemRegex = /\\resumeItem\{([^}]+)\}/g;
+      const itemRegex = /\\resumeItem\s*\{\s*([^}]+)\s*\}/g;
       let itemMatch;
       while ((itemMatch = itemRegex.exec(itemsText)) !== null) {
         description.push(itemMatch[1].trim());
       }
       
-      console.log('[DEBUG] Found', description.length, 'description items');
-      
-      // Only push if we found at least a name
-      if (name || stackStr) {
-        data.projects.push({
-          name,
-          date: date.trim(),
-          description,
-          stack,
-        });
-      }
+      data.projects.push({
+        name: name || 'Untitled Project',
+        date: date.trim(),
+        description,
+        stack,
+      });
     }
-    console.log('[DEBUG] Total projects found:', projectCount);
-  } else {
-    console.log('[DEBUG] Projects section not found!');
   }
 
   // ===== SKILLS =====
