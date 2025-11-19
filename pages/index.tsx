@@ -18,22 +18,44 @@ const Home = () => {
 
         <main className="main">
           <div id="home" className={styles.glassmorphismCard}>
+            // ...existing code...
             <h1 className={styles.title}>
               Nanda Kumudhan
             </h1>
 
             <p className={styles.description}>
-              BSc Computer Science and Artificial Intelligence Student at Loughborough University.
+              A passionate and driven Computer Science and AI student at Loughborough University, specializing in full-stack development and intelligent systems.
             </p>
 
             <div className={styles.socialLinks}>
               <a href="https://github.com/nanda-kumudhan" target="_blank" rel="noopener noreferrer">
-                <FaGithub size={30} />
-              </a>
-              <a href="https://linkedin.com/in/nanda-kumudhan" target="_blank" rel="noopener noreferrer">
-                <FaLinkedin size={30} />
-              </a>
+// ...existing code...
+          <div id="projects" className={styles.section}>
+            <h2 className={styles.sectionTitle}>Projects</h2>
+            <div className={styles.grid}>
+              {projects.map((project, index) => (
+                <div key={index} className={styles.card}>
+                  <h3>{project.name}</h3>
+                  <p className={styles.duration}>{project.date}</p>
+                  <ul className={styles.detailsList}>
+                    {project.description.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                  <div className={styles.stack}>
+                    {project.stack.map((tech, i) => (
+                      <span key={i} className={styles.tech}>{tech}</span>
+                    ))}
+                  </div>
+                  {project.module && <p className={styles.moduleInfo}>{project.module}</p>}
+                </div>
+              ))}
             </div>
+          </div>
+
+          <div id="skills" className={styles.section}>
+// ...existing code...
+
           </div>
 
           <div id="education" className={styles.section}>

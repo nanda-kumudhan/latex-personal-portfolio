@@ -6,6 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <div className="background"></div>
       <Component {...pageProps} />
       <Analytics />
       <SpeedInsights />
