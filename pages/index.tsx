@@ -153,7 +153,7 @@ const Home = () => {
         <Head>
           <title>Nanda Kumudhan - Portfolio</title>
           <meta name="description" content="Nanda Kumudhan's Portfolio" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         </Head>
 
         <Container

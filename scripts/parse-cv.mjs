@@ -102,17 +102,24 @@ async function parseCv() {
 
   // ===== PROJECTS =====
   console.log('📂 [PARSER] Extracting projects section...');
-  const projectsMatch = fileContent.match(/%-----------PROJECTS-----------[\s\S]*?\n([\s\S]*?)%-----------TECHNICAL SKILLS/);
-  if (projectsMatch) {
+  // Find content between PROJECTS and TECHNICAL SKILLS markers
+  const projectsStartIdx = fileContent.indexOf('%-----------PROJECTS-----------');
+  const projectsEndIdx = fileContent.indexOf('%-----------TECHNICAL SKILLS-----------');
+  
+  if (projectsStartIdx !== -1 && projectsEndIdx !== -1) {
     console.log('✅ [PARSER] Projects section found');
-    const projectsSection = projectsMatch[1];
+    const projectsSection = fileContent.substring(projectsStartIdx, projectsEndIdx);
+    console.log(`📝 [PARSER] Projects section length: ${projectsSection.length} characters`);
     
-    // Match: \resumeProjectHeading with flexible whitespace handling
+    // Match: \resumeProjectHeading{heading}{date} pattern
     const projectRegex = /\\resumeProjectHeading\s*\{\s*([^}]+?)\s*\}\s*\{\s*([^}]+?)\s*\}([\s\S]*?)(?=\\resumeProjectHeading|\\resumeSubHeadingListEnd)/g;
     
     let match;
+    let projectCount = 0;
     while ((match = projectRegex.exec(projectsSection)) !== null) {
+      projectCount++;
       const [, heading, date, itemsText] = match;
+      console.log(`  Found match #${projectCount}`);
       
       // Parse heading: \textbf{Name} $|$ \emph{Tech1, Tech2, Tech3}
       const headingMatch = heading.match(/\\textbf\s*\{\s*([^}]+)\s*\}\s*\$\|\$\s*\\emph\s*\{\s*([^}]+)\s*\}/);
@@ -138,8 +145,13 @@ async function parseCv() {
         description,
         stack,
       });
-      console.log(`  📌 [PARSER] Added project: ${name || 'Untitled Project'} (${stack.length} tech stack items)`);
+      console.log(`  📌 [PARSER] Added project: ${name || 'Untitled Project'} (${stack.length} tech items, ${description.length} bullets)`);
     }
+    console.log(`  ✓ Total projects extracted: ${projectCount}`);
+  } else {
+    console.log('❌ [PARSER] Could not find Projects section boundaries');
+    console.log(`  Projects marker at: ${projectsStartIdx}`);
+    console.log(`  Skills marker at: ${projectsEndIdx}`);
   }
 
   // ===== SKILLS =====
