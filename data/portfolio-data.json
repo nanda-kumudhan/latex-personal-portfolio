@@ -73,6 +73,84 @@
         "Java",
         "Spring Boot"
       ]
+    },
+    {
+      "name": "PedalPro",
+      "date": "Nov 2025",
+      "description": [
+        "Web application project"
+      ],
+      "stack": [
+        "HTML"
+      ],
+      "link": "https://github.com/nanda-kumudhan/PedalPro"
+    },
+    {
+      "name": "first-contributions",
+      "date": "Oct 2025",
+      "description": [
+        "Help beginners to contribute to open source projects"
+      ],
+      "stack": [
+        "JavaScript"
+      ],
+      "link": "https://github.com/nanda-kumudhan/first-contributions"
+    },
+    {
+      "name": "ENT-Care-Hub",
+      "date": "Oct 2025",
+      "description": [
+        "ENT care management system"
+      ],
+      "stack": [
+        "PHP"
+      ],
+      "link": "https://github.com/nanda-kumudhan/ENT-Care-Hub"
+    },
+    {
+      "name": "Music-Store-Rental-Management-System",
+      "date": "Oct 2025",
+      "description": [
+        "Programming and Databases (Python CW)"
+      ],
+      "stack": [
+        "Python",
+        "Jupyter"
+      ],
+      "link": "https://github.com/nanda-kumudhan/Music-Store-Rental-Management-System"
+    },
+    {
+      "name": "Payroll-management-system",
+      "date": "Oct 2025",
+      "description": [
+        "Payroll management system"
+      ],
+      "stack": [
+        "C++"
+      ],
+      "link": "https://github.com/nanda-kumudhan/Payroll-management-system"
+    },
+    {
+      "name": "Performance-Hall",
+      "date": "Sept 2025",
+      "description": [
+        "Java OOP project"
+      ],
+      "stack": [
+        "Java"
+      ],
+      "link": "https://github.com/nanda-kumudhan/Performance-Hall"
+    },
+    {
+      "name": "forage-midas",
+      "date": "Aug 2025",
+      "description": [
+        "Project repo for the JPMC Advanced Software Engineering Forage program"
+      ],
+      "stack": [
+        "Java"
+      ],
+      "link": "https://github.com/nanda-kumudhan/forage-midas"
     }
   ],
   "skills": {

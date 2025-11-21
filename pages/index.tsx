@@ -21,7 +21,7 @@ import styles from "../styles/home.module.css";
 
 const Home = () => {
   const data = portfolioData as Partial<PortfolioData>;
-  const { education = [], experience = [], projects = [], skills = { languages: [], frameworksAndLibraries: [], developerToolsAndPlatforms: [], aiAndMLLLMs: [] } } = data;
+  const { education = [], experience = [], projects = [], skills = { languages: [], frameworksAndLibraries: [], developerToolsAndPlatforms: [] } } = data;
 
   // Log component mount and data
   if (typeof window !== 'undefined') {
@@ -30,7 +30,7 @@ const Home = () => {
     console.log(`  - Education: ${education.length} entries`);
     console.log(`  - Experience: ${experience.length} entries`);
     console.log(`  - Projects: ${projects.length} entries`);
-    console.log(`  - Skills: ${skills.languages.length + skills.frameworksAndLibraries.length + skills.developerToolsAndPlatforms.length + skills.aiAndMLLLMs.length} total`);
+    console.log(`  - Skills: ${skills.languages.length + skills.frameworksAndLibraries.length + skills.developerToolsAndPlatforms.length} total`);
   }
 
   return (
@@ -51,9 +51,7 @@ const Home = () => {
               Nanda Kumudhan
             </Heading>
             <Text as="p" className={styles.heroSubtitle}>
-              A passionate and driven Computer Science and AI student at
-              Loughborough University, specializing in full-stack development
-              and intelligent systems.
+              Building intelligent, scalable solutions that bridge the gap between AI and real-world impact. Full-stack developer obsessed with clean code, rapid iteration, and shipping products that actually matter.
             </Text>
 
             <Flex gap="6" justify="center" className={styles.socialLinks}>
@@ -203,6 +201,24 @@ const Home = () => {
                         {project.module}
                       </Text>
                     )}
+
+                    {project.link && (
+                      <Button
+                        asChild
+                        variant="ghost"
+                        className={styles.projectGithubButton}
+                      >
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View ${project.name} on GitHub`}
+                        >
+                          <FaGithub size={16} />
+                          View on GitHub
+                        </a>
+                      </Button>
+                    )}
                   </Flex>
                 </GlassPanel>
               ))}
@@ -259,18 +275,6 @@ const Home = () => {
                 </Flex>
               </Box>
 
-              <Box>
-                <Heading as="h3" size="5" className={styles.skillsCategory}>
-                  AI/ML & LLMs
-                </Heading>
-                <Flex gap="3" wrap="wrap">
-                  {skills.aiAndMLLLMs.map((skill, index) => (
-                    <Badge key={index} className={styles.skillBadge}>
-                      {skill}
-                    </Badge>
-                  ))}
-                </Flex>
-              </Box>
             </Grid>
           </Box>
 
