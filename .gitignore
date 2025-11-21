@@ -8,3 +8,7 @@ data/cv/*.synctex.gz
 
 # Generated portfolio data (regenerated on build)
 data/portfolio-data.json
+
+# Environment variables
+.env.local
+.env*.local
