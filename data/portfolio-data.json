@@ -4,21 +4,23 @@
       "institution": "Loughborough University",
       "location": "Loughborough, UK",
       "qualification": "BSc Computer Science and Artificial Intelligence",
-      "duration": "Sept 2024 -- June 2028",
+      "duration": "Sept 2024 -- Present",
       "details": [
-        "Year 1: 2:1 (Top 20\\% of cohort)",
-        "Key modules: Data Structures \\& Algorithms, Embedded Systems Programming (75\\%), Software Engineering (75\\%), Operating Systems, Networks",
-        "Full-stack PHP/JS Healthcare Portal — 89\\%"
+        "First Year: 2:1",
+        "Key modules: Data Structures \\& Algorithms, Embedded Systems Programming, Software Engineering, Operating Systems, Networks",
+        "Embedded Systems payroll system — achieved 70\\%",
+        "Full-stack PHP/JS Healthcare Portal — achieved 89\\%",
+        "Java OOP ticket booking system — achieved 79\\%"
       ]
     },
     {
       "institution": "West Bridgford School",
       "location": "Nottingham, UK",
-      "qualification": "A Levels (120 UCAS Points)",
-      "duration": "2022 -- 2024",
+      "qualification": "A-Levels",
+      "duration": "Sept 2022 -- June 2024",
       "details": [
-        "Subjects: Mathematics (B), Physics (B), Computer Science (B)",
-        "Flask E-commerce Bike Sales Web App — 100\\%"
+        "Subjects: Mathematics, Physics, Computer Science — 120 UCAS points",
+        "Flask E-commerce Bike Sales Web App — achieved 100\\%"
       ]
     }
   ],
@@ -26,52 +28,72 @@
     {
       "role": "Software Developer (Freelance)",
       "company": "Remote",
-      "duration": "Jan 2023 -- May 2023",
+      "duration": "July 2025 -- August 2025",
       "description": [
-        "Designed and implemented a full-stack inventory and sales dashboard using \\textbf{Python, JavaScript, TypeScript, Flask, and Chart.js",
-        "Automated invoice generation, stock alerts, and sales summaries, saving 30+ hours of manual work per month",
-        "Integrated a lightweight database using \\textbf{PostgreSQL",
-        "Developed interactive charts and visualizations to track sales trends, inventory levels, and customer orders, improving decision-making accuracy",
-        "Managed deployment, version control (\\textbf{Git"
+        "Designed and implemented a full-stack inventory and sales dashboard using \\textbf{Python, JavaScript, TypeScript, Flask, Chart.js",
+        "Automated invoice generation, stock alerts, and sales summaries, saving \\textbf{30+ hours/month",
+        "Integrated a \\textbf{PostgreSQL",
+        "Developed interactive charts and visualizations to track sales trends, inventory levels, and customer orders, improving accuracy by \\textbf{25\\%"
       ]
     },
     {
       "role": "Front-of-House Receptionist",
-      "company": "Korma Sutra Indian Restaurant, Nottingham, UK",
+      "company": "Indian Restaurant, Nottingham, UK",
       "duration": "Jun 2022 -- Sep 2024",
       "description": [
-        "Managed bookings, reservations, and customer interactions efficiently",
-        "Assisted in POS operations and basic reporting tasks"
+        "Managed bookings, reservations, and customer interactions efficiently, improving customer satisfaction by \\textbf{20\\%",
+        "Assisted in POS operations and reporting tasks, reducing errors by \\textbf{15\\%"
       ]
     }
   ],
   "projects": [
     {
       "name": "Smart Study Assistant",
-      "date": "Sept 2024 -- Present",
+      "date": "Nov 2025 -- Present",
       "description": [
-        "Founded AI-powered study platform delivering notes and quizzes via \\textbf{OpenAI API",
-        "Automated lecture content retrieval, transcription, and summarization using \\textbf{Panopto",
-        "Built scalable, responsive \\textbf{React/TypeScript"
+        "Architected an \\textbf{AI-powered study assistant",
+        "Engineered automated \\textbf{lecture transcription, summarization, and key point extraction",
+        "Built dynamic \\textbf{quiz generation engine",
+        "Developed scalable \\textbf{React/TypeScript frontend",
+        "Integrated dual \\textbf{LLM strategy"
       ],
       "stack": [
-        "JavaScript",
         "TypeScript",
         "React",
         "Node.js",
+        "OpenAI",
+        "Llama",
         "Panopto"
       ]
     },
     {
       "name": "JP Morgan Software Engineering Simulation",
-      "date": "June 2024",
+      "date": "June 2025",
       "description": [
-        "Developed backend transaction system simulating real-world banking operations including fraud detection",
-        "Implemented unit/integration testing and robust logging, increasing reliability and reducing runtime errors by 30\\%"
+        "Developed a backend transaction system simulating real-world banking operations including fraud detection.",
+        "Implemented unit/integration tests and logging to improve system reliability."
       ],
       "stack": [
         "Java",
         "Spring Boot"
+      ]
+    },
+    {
+      "name": "CatchUp AI (Recapped)",
+      "date": "Nov 2025 -- Present",
+      "description": [
+        "Building a unified \\textbf{AI-powered academic platform",
+        "Implementing smart note-taking with \\textbf{AI key point extraction",
+        "Developed lecture studio with multi-format support (\\textbf{PDF, MP3, MP4, PPTX, DOCX",
+        "Engineered task management with \\textbf{Pomodoro study sessions",
+        "Architected scalable \\textbf{Supabase backend"
+      ],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Chakra UI",
+        "Supabase",
+        "Hugging Face"
       ]
     }
   ],
@@ -94,16 +116,8 @@
       "Bootstrap",
       "Tailwind",
       "Spring Boot",
-      "Panopto",
-      "pandas",
-      "NumPy",
-      "Matplotlib"
+      "Panopto"
     ],
-    "toolsAndPlatforms": [
-      "Git",
-      "Google Cloud Platform",
-      "Firebase",
-      "Supabase"
-    ]
+    "toolsAndPlatforms": []
   }
 }
