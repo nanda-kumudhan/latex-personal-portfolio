@@ -21,7 +21,7 @@ import styles from "../styles/home.module.css";
 
 const Home = () => {
   const data = portfolioData as Partial<PortfolioData>;
-  const { education = [], experience = [], projects = [], skills = { languages: [], frameworksAndLibraries: [], toolsAndPlatforms: [] } } = data;
+  const { education = [], experience = [], projects = [], skills = { languages: [], frameworksAndLibraries: [], developerToolsAndPlatforms: [], aiAndMLLLMs: [] } } = data;
 
   // Log component mount and data
   if (typeof window !== 'undefined') {
@@ -30,7 +30,7 @@ const Home = () => {
     console.log(`  - Education: ${education.length} entries`);
     console.log(`  - Experience: ${experience.length} entries`);
     console.log(`  - Projects: ${projects.length} entries`);
-    console.log(`  - Skills: ${skills.languages.length + skills.frameworksAndLibraries.length + skills.toolsAndPlatforms.length} total`);
+    console.log(`  - Skills: ${skills.languages.length + skills.frameworksAndLibraries.length + skills.developerToolsAndPlatforms.length + skills.aiAndMLLLMs.length} total`);
   }
 
   return (
@@ -216,7 +216,7 @@ const Home = () => {
             </Heading>
 
             <Grid
-              columns={{ initial: "1", md: "2", lg: "3" }}
+              columns={{ initial: "1", md: "2", lg: "4" }}
               gap="6"
               width="100%"
             >
@@ -248,10 +248,23 @@ const Home = () => {
 
               <Box>
                 <Heading as="h3" size="5" className={styles.skillsCategory}>
-                  Tools & Platforms
+                  Developer Tools & Platforms
                 </Heading>
                 <Flex gap="3" wrap="wrap">
-                  {skills.toolsAndPlatforms.map((skill, index) => (
+                  {skills.developerToolsAndPlatforms.map((skill, index) => (
+                    <Badge key={index} className={styles.skillBadge}>
+                      {skill}
+                    </Badge>
+                  ))}
+                </Flex>
+              </Box>
+
+              <Box>
+                <Heading as="h3" size="5" className={styles.skillsCategory}>
+                  AI/ML & LLMs
+                </Heading>
+                <Flex gap="3" wrap="wrap">
+                  {skills.aiAndMLLLMs.map((skill, index) => (
                     <Badge key={index} className={styles.skillBadge}>
                       {skill}
                     </Badge>

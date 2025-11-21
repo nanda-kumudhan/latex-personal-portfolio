@@ -1,0 +1,16 @@
+{
+  "excludedProjects": [
+    "latex-personal-portfolio",
+    "nanda-kumudhan",
+    "team19-make-it-all-system",
+    "first-contributions"
+  ],
+  "projectsInCV": [
+    "Smart Study Assistant",
+    "JP Morgan Software Engineering Simulation",
+    "CatchUp AI",
+    "Team19 Make-It-All System"
+  ],
+  "autoAddProjects": true,
+  "description": "Configuration for automatic CV project updates. Add project names to excludedProjects to skip them."
+}

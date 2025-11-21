@@ -38,7 +38,8 @@ async function parseCv() {
     skills: {
       languages: [],
       frameworksAndLibraries: [],
-      toolsAndPlatforms: [],
+      developerToolsAndPlatforms: [],
+      aiAndMLLLMs: [],
     },
   };
   console.log('📋 [PARSER] Initialized data structure');
@@ -220,31 +221,25 @@ async function parseCv() {
     console.log('✅ [PARSER] Skills section found');
     const skillsSection = skillsMatch[1];
     
-    // Extract languages - format: \textbf{Languages}{: items} or \textbf{Languages}: items
-    const languagesMatch = skillsSection.match(/\\textbf\{Languages\}\{?:\s*([^}\\]+?)(?=\\\\|\}|\\textbf|$)/);
-    if (languagesMatch) {
-      data.skills.languages = languagesMatch[1]
+    // Extract from resumeSubheading format: \resumeSubheading{Category}{}{items}{}
+    const subheadingRegex = /\\resumeSubheading\s*\{([^}]+)\}\s*\{\}\s*\{([^}]+)\}\s*\{\}/g;
+    let match;
+    while ((match = subheadingRegex.exec(skillsSection)) !== null) {
+      const [, category, items] = match;
+      const skillsList = items
         .split(',')
         .map(s => s.trim())
         .filter(Boolean);
-    }
-    
-    // Extract frameworks & libraries
-    const frameworksMatch = skillsSection.match(/\\textbf\{Frameworks[^}]*\}\{?:\s*([^}\\]+?)(?=\\\\|\}|\\textbf|$)/);
-    if (frameworksMatch) {
-      data.skills.frameworksAndLibraries = frameworksMatch[1]
-        .split(',')
-        .map(s => s.trim())
-        .filter(Boolean);
-    }
-    
-    // Extract tools & platforms
-    const toolsMatch = skillsSection.match(/\\textbf\{Tools[^}]*\}\{?:\s*([^}\\]+?)(?=\\\\|\}|\\textbf|$)/);
-    if (toolsMatch) {
-      data.skills.toolsAndPlatforms = toolsMatch[1]
-        .split(',')
-        .map(s => s.trim())
-        .filter(Boolean);
+      
+      if (category.includes('Languages')) {
+        data.skills.languages = skillsList;
+      } else if (category.includes('Frameworks')) {
+        data.skills.frameworksAndLibraries = skillsList;
+      } else if (category.includes('Developer Tools')) {
+        data.skills.developerToolsAndPlatforms = skillsList;
+      } else if (category.includes('AI/ML') || category.includes('LLMs')) {
+        data.skills.aiAndMLLLMs = skillsList;
+      }
     }
   }
 
@@ -255,7 +250,8 @@ async function parseCv() {
   console.log(`  ✓ Projects: ${data.projects.length}`);
   console.log(`  ✓ Languages: ${data.skills.languages.length}`);
   console.log(`  ✓ Frameworks: ${data.skills.frameworksAndLibraries.length}`);
-  console.log(`  ✓ Tools: ${data.skills.toolsAndPlatforms.length}`);
+  console.log(`  ✓ Developer Tools: ${data.skills.developerToolsAndPlatforms.length}`);
+  console.log(`  ✓ AI/ML & LLMs: ${data.skills.aiAndMLLLMs.length}`);
   console.log(`✅ [PARSER] Successfully created ${outputFilePath}`);
   console.log('\n=====================================');
   console.log('   ✨ CV PARSER COMPLETE');

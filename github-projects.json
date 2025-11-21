@@ -1,0 +1,104 @@
+[
+  {
+    "name": "catchup-ai",
+    "path": "/home/nanda-kumudhan/Github/catchup-ai",
+    "readme": "# CatchUp AI (Recapped) - Unified Academic Workspace\n\nA modern, AI-powered academic productivity platform that unifies notes, lectures, tasks, and calendar into a single, intelligent workspace. Built with Next.js 15, Chakra UI, Supabase, and Hugging Face AI.\n\n**Codename**: Recapped / StudyFlow Unified\n\n## 🎯 Core Value Proposition\n\nStop juggling multiple apps. CatchUp AI integrates all your academic tools—notes, lectures, tasks, and schedules—intelligently into one workspace.\n\n## ✨ Core Features\n\n### Smart Notes\n- Create and organize notes with rich text editing\n- AI-powered key point extraction from lecture content\n- Automatic flashcard generation from notes\n- Concept graph visualization for understanding connections\n- Tag-based organization and search\n\n### Lecture Studio",
+    "packageJson": {
+      "name": "catchup-ai",
+      "version": "0.1.0",
+      "private": true,
+      "scripts": {
+        "dev": "next dev --turbopack -p 9003",
+        "build": "NODE_ENV=production next build",
+        "start": "next start",
+        "lint": "next lint",
+        "typecheck": "tsc --noEmit"
+      },
+      "dependencies": {
+        "@chakra-ui/icons": "^2.2.4",
+        "@chakra-ui/react": "^3.29.0",
+        "@emotion/react": "^11.14.0",
+        "@emotion/styled": "^11.14.1",
+        "@hookform/resolvers": "^5.2.2",
+        "@huggingface/inference": "^4.13.3",
+        "@supabase/ssr": "^0.7.0",
+        "@supabase/supabase-js": "^2.83.0",
+        "@vercel/speed-insights": "^1.2.0",
+        "date-fns": "^3.6.0",
+        "dotenv": "^16.6.1",
+        "lucide-react": "^0.554.0",
+        "next": "^16.0.3",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-hook-form": "^7.66.1",
+        "vercel": "^48.10.6",
+        "zod": "^4.1.12"
+      },
+      "devDependencies": {
+        "@types/node": "^20.19.25",
+        "@types/react": "^18.3.27",
+        "@types/react-dom": "^18.3.7",
+        "typescript": "^5.9.3"
+      }
+    },
+    "tech": [
+      "@chakra-ui/icons",
+      "@chakra-ui/react",
+      "@emotion/react",
+      "@supabase/ssr",
+      "@supabase/supabase-js",
+      "lucide-react",
+      "next",
+      "react",
+      "react-dom",
+      "react-hook-form",
+      "@types/node",
+      "@types/react",
+      "@types/react-dom",
+      "typescript"
+    ]
+  },
+  {
+    "name": "part-2-team_19",
+    "path": "/home/nanda-kumudhan/Github/part-2-team_19",
+    "readme": "# Team19 Make-It-All System\n\n> Modern helpdesk and issue-tracking application built with Next.js and Tailwind CSS\n>\n> **Course**: COB290 (2025) | Team 19\n\n## 📋 Assignment\n\n[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/tNiVd0RT)\n\n---\n\n## 🚀 Tech Stack\n\n| Category | Technology |\n|----------|-----------|\n| **Framework** | Next.js (App Router) |\n| **Styling** | Tailwind CSS v4 + PostCSS |\n| **Charts** | Chart.js |\n| **Runtime** | Node.js 18+ |",
+    "packageJson": {
+      "name": "react-make-it-all",
+      "version": "0.1.0",
+      "private": true,
+      "type": "module",
+      "dependencies": {
+        "@tailwindcss/cli": "^4.1.16",
+        "chart.js": "^4.5.1",
+        "framer-motion": "^12.23.24",
+        "next": "^16.0.3",
+        "prop-types": "^15.8.1",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "react-icons": "^5.5.0",
+        "web-vitals": "^5.1.0"
+      },
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+      },
+      "devDependencies": {
+        "@tailwindcss/postcss": "^4.1.16",
+        "autoprefixer": "^10.4.21",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^4.1.17"
+      }
+    },
+    "tech": [
+      "@tailwindcss/cli",
+      "next",
+      "react",
+      "react-dom",
+      "react-icons",
+      "@tailwindcss/postcss",
+      "tailwindcss"
+    ]
+  }
+]

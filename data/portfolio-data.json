@@ -84,8 +84,6 @@
       "description": [
         "Building a unified \\textbf{AI-powered academic platform",
         "Implementing smart note-taking with \\textbf{AI key point extraction",
-        "Developed lecture studio with multi-format support (\\textbf{PDF, MP3, MP4, PPTX, DOCX",
-        "Engineered task management with \\textbf{Pomodoro study sessions",
         "Architected scalable \\textbf{Supabase backend"
       ],
       "stack": [
@@ -94,6 +92,21 @@
         "Chakra UI",
         "Supabase",
         "Hugging Face"
+      ]
+    },
+    {
+      "name": "Team19 Make-It-All System",
+      "date": "2025",
+      "description": [
+        "Architected a modern \\textbf{helpdesk and issue-tracking application",
+        "Implemented real-time \\textbf{analytics dashboard",
+        "Built responsive UI components with advanced filtering and search capabilities, improving team productivity and issue resolution time by \\textbf{30\\%"
+      ],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Chart.js"
       ]
     }
   ],
@@ -116,8 +129,23 @@
       "Bootstrap",
       "Tailwind",
       "Spring Boot",
-      "Panopto"
+      "pandas",
+      "NumPy",
+      "Matplotlib"
     ],
-    "toolsAndPlatforms": []
+    "developerToolsAndPlatforms": [
+      "Docker",
+      "Google Cloud Platform",
+      "Firebase",
+      "Supabase"
+    ],
+    "aiAndMLLLMs": [
+      "OpenAI API",
+      "Llama",
+      "Hugging Face",
+      "RAG (Retrieval-Augmented Generation)",
+      "Fine-tuning",
+      "LangChain"
+    ]
   }
 }
