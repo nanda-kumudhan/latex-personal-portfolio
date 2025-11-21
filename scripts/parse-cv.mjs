@@ -108,7 +108,7 @@ async function parseCv() {
   // ===== PROJECTS =====
   console.log('📂 [PARSER] Extracting projects section...');
   const projectsStartIdx = fileContent.indexOf('%-----------PROJECTS-----------');
-  const projectsEndIdx = fileContent.indexOf('%-----------TECHNICAL SKILLS-----------');
+  const projectsEndIdx = fileContent.indexOf('%-----------Programming SKILLS-----------');
   
   console.log(`  Index positions - Start: ${projectsStartIdx}, End: ${projectsEndIdx}`);
   
@@ -216,29 +216,39 @@ async function parseCv() {
 
   // ===== SKILLS =====
   console.log('🛠️  [PARSER] Extracting skills section...');
-  const skillsMatch = fileContent.match(/%-----------TECHNICAL SKILLS-----------\n([\s\S]*?)\n\\end\{document\}/);
+  const skillsMatch = fileContent.match(/%-----------Programming SKILLS-----------\n([\s\S]*?)(?:\n%-----------|\n\\end\{document\})/);
   if (skillsMatch) {
     console.log('✅ [PARSER] Skills section found');
     const skillsSection = skillsMatch[1];
     
-    // Extract from resumeSubheading format: \resumeSubheading{Category}{}{items}{}
-    const subheadingRegex = /\\resumeSubheading\s*\{([^}]+)\}\s*\{\}\s*\{([^}]+)\}\s*\{\}/g;
+    // Extract from format: \textbf{Category}{: items} \\
+    const categoryRegex = /\\textbf\{([^}]+)\}\{:\s*([^}]+)\}/g;
     let match;
-    while ((match = subheadingRegex.exec(skillsSection)) !== null) {
-      const [, category, items] = match;
-      const skillsList = items
+    while ((match = categoryRegex.exec(skillsSection)) !== null) {
+      const [, category, itemsStr] = match;
+      const skillsList = itemsStr
         .split(',')
-        .map(s => s.trim())
-        .filter(Boolean);
+        .map(s => s.trim().replace(/\\/g, '').replace(/\$.*?\$/g, ''))
+        .filter(s => s && s.length > 0 && s !== '');
+      
+      console.log(`  📌 [PARSER] Found category: ${category.trim()}`);
       
       if (category.includes('Languages')) {
         data.skills.languages = skillsList;
+        console.log(`    ✓ Languages: ${skillsList.length} items`);
       } else if (category.includes('Frameworks')) {
         data.skills.frameworksAndLibraries = skillsList;
+        console.log(`    ✓ Frameworks: ${skillsList.length} items`);
       } else if (category.includes('Developer Tools')) {
         data.skills.developerToolsAndPlatforms = skillsList;
+        console.log(`    ✓ Developer Tools: ${skillsList.length} items`);
+      } else if (category.includes('Libraries')) {
+        // Merge libraries with frameworks
+        data.skills.frameworksAndLibraries = [...(data.skills.frameworksAndLibraries || []), ...skillsList];
+        console.log(`    ✓ Libraries: ${skillsList.length} items (merged with Frameworks)`);
       } else if (category.includes('AI/ML') || category.includes('LLMs')) {
         data.skills.aiAndMLLLMs = skillsList;
+        console.log(`    ✓ AI/ML & LLMs: ${skillsList.length} items`);
       }
     }
   }
