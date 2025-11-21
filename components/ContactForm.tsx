@@ -60,6 +60,7 @@ function ContactForm() {
           user_name: formData.name,
           user_email: formData.email,
           message: formData.message,
+          time: new Date().toLocaleString(),
         }
       );
 
