@@ -42,14 +42,14 @@ function ContactForm() {
     }
 
     if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
-      console.error('❌ [FORM] EmailJS credentials not configured');
+      console.error('[FORM] EmailJS credentials not configured');
       setMessage({ type: 'error', text: 'Email service not configured. Please try again later.' });
       return;
     }
 
     setLoading(true);
     setMessage(null);
-    console.log('📧 [FORM] Sending contact form...');
+    console.log('[FORM] Sending contact form...');
 
     try {
       const response = await emailjs.send(
@@ -65,7 +65,7 @@ function ContactForm() {
       );
 
       if (response.status === 200) {
-        console.log('✅ [FORM] Email sent successfully');
+        console.log('[FORM] Email sent successfully');
         setMessage({ type: 'success', text: 'Message sent successfully! I\'ll get back to you soon.' });
         setFormData({ name: '', email: '', message: '' });
 
@@ -81,7 +81,7 @@ function ContactForm() {
         setTimeout(() => setMessage(null), 4000);
       }
     } catch (error) {
-      console.error('❌ [FORM] Failed to send email:', error);
+      console.error('[FORM] Failed to send email:', error);
       setMessage({ type: 'error', text: 'Failed to send message. Please try again.' });
     } finally {
       setLoading(false);

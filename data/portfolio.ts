@@ -28,9 +28,9 @@ export interface PortfolioData {
   education: Education[];
   skills: {
     languages: string[];
-    frameworksAndLibraries: string[];
-    developerToolsAndPlatforms: string[];
-    aiAndMLLLMs: string[];
+    frameworks: string[];
+    developerTools: string[];
+    libraries: string[];
   };
 }
 
@@ -106,7 +106,7 @@ export const experience: Experience[] = [
 
 export const skills = {
   languages: ['Java', 'Python', 'C/C++', 'JavaScript', 'TypeScript', 'PHP', 'SQL (Postgres/MySQL)', 'HTML/CSS'],
-  frameworksAndLibraries: ['React', 'Node.js', 'Flask', 'FastAPI', 'Bootstrap', 'Tailwind', 'Spring Boot', 'pandas', 'NumPy', 'Matplotlib'],
-  developerToolsAndPlatforms: ['Docker', 'Google Cloud Platform', 'Firebase', 'Supabase'],
-  aiAndMLLLMs: ['OpenAI API', 'Llama', 'Hugging Face', 'RAG (Retrieval-Augmented Generation)', 'Fine-tuning', 'LangChain'],
+  frameworks: ['React', 'Node.js', 'Flask', 'FastAPI', 'Bootstrap', 'Tailwind', 'Spring Boot'],
+  developerTools: ['Docker', 'Google Cloud Platform', 'Firebase', 'Supabase', 'Git', 'Github Actions', 'VS Code', 'Visual Studio', 'PyCharm', 'IntelliJ', 'Eclipse'],
+  libraries: ['pandas', 'NumPy', 'Matplotlib'],
 };

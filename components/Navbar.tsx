@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useEffect, useState, useCallback } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Box, Flex, Button, IconButton, Text } from '@radix-ui/themes';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
 import styles from '../styles/navbar.module.css';
 
 const sections = ['home', 'education', 'experience', 'projects', 'skills', 'contact'];
@@ -10,12 +10,21 @@ const sections = ['home', 'education', 'experience', 'projects', 'skills', 'cont
 const Navbar = () => {
   const [active, setActive] = useState<string>('home');
   const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [mounted, setMounted] = useState(false);
 
   const handleClose = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    console.log('🔗 [NAVBAR] Navigation component mounted');
+    console.log('[NAVBAR] Navigation component mounted');
+    
+    // Set initial theme
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+    setMounted(true);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -47,6 +56,15 @@ const Navbar = () => {
     }
   };
 
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    if (typeof window !== 'undefined') {
+      (window as any).__toggleTheme?.();
+    }
+  };
+
   return (
     <>
       <Box
@@ -55,7 +73,7 @@ const Navbar = () => {
         aria-label="Main navigation"
       >
         <Flex
-          justify="center"
+          justify="between"
           align="center"
           gap="6"
           className={styles.navContent}
@@ -82,6 +100,20 @@ const Navbar = () => {
               );
             })}
           </Flex>
+
+          {/* Theme Toggle Button */}
+          {mounted && (
+            <IconButton
+              onClick={toggleTheme}
+              className={styles.themeToggle}
+              aria-label="Toggle theme"
+              size="3"
+              variant="ghost"
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
+            </IconButton>
+          )}
 
           {/* Mobile Menu Button */}
           <Dialog.Root open={open} onOpenChange={setOpen}>

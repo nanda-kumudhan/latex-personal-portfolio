@@ -25,8 +25,8 @@ const Home = () => {
 
   // Log component mount and data
   if (typeof window !== 'undefined') {
-    console.log('🎨 [PAGE] Portfolio page loaded');
-    console.log(`📊 [PAGE] Data loaded:`);
+    console.log('[PAGE] Portfolio page loaded');
+    console.log(`[PAGE] Data loaded:`);
     console.log(`  - Education: ${education.length} entries`);
     console.log(`  - Experience: ${experience.length} entries`);
     console.log(`  - Projects: ${projects.length} entries`);
@@ -51,7 +51,7 @@ const Home = () => {
               Nanda Kumudhan
             </Heading>
             <Text as="p" className={styles.heroSubtitle}>
-              Building intelligent, scalable solutions that bridge the gap between AI and real-world impact. Full-stack developer obsessed with clean code, rapid iteration, and shipping products that actually matter.
+              Computer Science & AI student at Loughborough University. Building full-stack applications with real-world impact—from AI-powered platforms to financial trading systems. Actively seeking internships and placements in software engineering and intelligent systems.
             </Text>
 
             <Flex gap="6" justify="center" className={styles.socialLinks}>

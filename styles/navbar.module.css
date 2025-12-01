@@ -79,9 +79,27 @@
   font-size: 1.5rem;
 }
 
+.themeToggle {
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.themeToggle:hover {
+  color: #00aaff;
+  transform: rotate(20deg);
+}
+
 @media (max-width: 768px) {
   .mobileMenuBtn {
     display: inline-flex;
+  }
+
+  .themeToggle {
+    margin-right: 0.5rem;
   }
 }
 

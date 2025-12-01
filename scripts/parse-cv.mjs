@@ -37,9 +37,9 @@ async function parseCv() {
     projects: [],
     skills: {
       languages: [],
-      frameworksAndLibraries: [],
-      developerToolsAndPlatforms: [],
-      aiAndMLLLMs: [],
+      frameworks: [],
+      developerTools: [],
+      libraries: [],
     },
   };
   console.log('📋 [PARSER] Initialized data structure');
@@ -237,18 +237,14 @@ async function parseCv() {
         data.skills.languages = skillsList;
         console.log(`    ✓ Languages: ${skillsList.length} items`);
       } else if (category.includes('Frameworks')) {
-        data.skills.frameworksAndLibraries = skillsList;
+        data.skills.frameworks = skillsList;
         console.log(`    ✓ Frameworks: ${skillsList.length} items`);
       } else if (category.includes('Developer Tools')) {
-        data.skills.developerToolsAndPlatforms = skillsList;
+        data.skills.developerTools = skillsList;
         console.log(`    ✓ Developer Tools: ${skillsList.length} items`);
       } else if (category.includes('Libraries')) {
-        // Merge libraries with frameworks
-        data.skills.frameworksAndLibraries = [...(data.skills.frameworksAndLibraries || []), ...skillsList];
-        console.log(`    ✓ Libraries: ${skillsList.length} items (merged with Frameworks)`);
-      } else if (category.includes('AI/ML') || category.includes('LLMs')) {
-        data.skills.aiAndMLLLMs = skillsList;
-        console.log(`    ✓ AI/ML & LLMs: ${skillsList.length} items`);
+        data.skills.libraries = skillsList;
+        console.log(`    ✓ Libraries: ${skillsList.length} items`);
       }
     }
   }
@@ -259,9 +255,9 @@ async function parseCv() {
   console.log(`  ✓ Experience entries: ${data.experience.length}`);
   console.log(`  ✓ Projects: ${data.projects.length}`);
   console.log(`  ✓ Languages: ${data.skills.languages.length}`);
-  console.log(`  ✓ Frameworks: ${data.skills.frameworksAndLibraries.length}`);
-  console.log(`  ✓ Developer Tools: ${data.skills.developerToolsAndPlatforms.length}`);
-  console.log(`  ✓ AI/ML & LLMs: ${data.skills.aiAndMLLLMs.length}`);
+  console.log(`  ✓ Frameworks: ${data.skills.frameworks.length}`);
+  console.log(`  ✓ Developer Tools: ${data.skills.developerTools.length}`);
+  console.log(`  ✓ Libraries: ${data.skills.libraries.length}`);
   console.log(`✅ [PARSER] Successfully created ${outputFilePath}`);
   console.log('\n=====================================');
   console.log('   ✨ CV PARSER COMPLETE');

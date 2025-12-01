@@ -4,11 +4,11 @@
       "institution": "Loughborough University",
       "location": "Loughborough, UK",
       "qualification": "BSc Computer Science and Artificial Intelligence",
-      "duration": "Sept 2024 -- June 2028",
+      "duration": "Sept 2024 -- June 2027",
       "details": [
-        "Year 1: 2:1 (Top 20% of cohort)",
-        "Key modules: Data Structures & Algorithms, Embedded Systems Programming, Software Engineering, Operating Systems, Networks",
-        "Full-stack PHP/JS Healthcare Portal — 89%"
+        "Year 1: 2:1",
+        "Key modules: Data Structures \\& Algorithms, Embedded Systems Programming, Software Engineering, Operating Systems, Networks",
+        "Full-stack PHP/JS Healthcare Portal — 89\\%"
       ]
     },
     {
@@ -17,22 +17,21 @@
       "qualification": "A Levels (120 UCAS Points)",
       "duration": "2022 -- 2024",
       "details": [
-        "Subjects: Mathematics (B), Physics (B), Computer Science (B) — overall grades: BBB",
-        "Flask E-commerce Bike Sales Web App — 100%"
+        "Flask E-commerce Bike Sales Web App — 100\\%"
       ]
     }
   ],
   "experience": [
     {
       "role": "Software Developer (Freelance)",
-      "company": "Remote",
+      "company": "Remote/Chennai, IN",
       "duration": "July 2025 -- August 2025",
       "description": [
-        "Designed and implemented a full-stack inventory and sales dashboard using Python, JavaScript, TypeScript, Flask, and Chart.js, enabling real-time reporting.",
-        "Automated invoice generation, stock alerts, and sales summaries, saving 30+ hours per month.",
-        "Integrated PostgreSQL database with optimized queries for efficient data retrieval.",
-        "Developed interactive charts and visualizations to track sales trends, inventory levels, and customer orders.",
-        "Managed deployment, version control (Git), and incremental updates for smooth operations."
+        "Designed and implemented a full-stack inventory and sales dashboard using \\textbf{Python, JavaScript, TypeScript, Flask, Chart.js",
+        "Automated invoice generation, stock alerts, and sales summaries, saving \\textbf{30+ hours/month",
+        "Integrated a \\textbf{PostgreSQL",
+        "Developed interactive charts and visualizations to track sales trends, inventory levels, and customer orders, improving accuracy by \\textbf{25\\%",
+        "Managed deployment, version control (\\textbf{Git"
       ]
     },
     {
@@ -40,19 +39,50 @@
       "company": "Indian Restaurant, Nottingham, UK",
       "duration": "Jun 2022 -- Sep 2024",
       "description": [
-        "Managed bookings, reservations, and customer interactions efficiently, improving customer satisfaction by 20%.",
-        "Assisted in POS operations and reporting tasks, reducing errors by 15%."
+        "Managed bookings, reservations, and customer interactions efficiently, improving customer satisfaction by \\textbf{20\\%",
+        "Assisted in POS operations and reporting tasks, reducing errors by \\textbf{15\\%"
       ]
     }
   ],
   "projects": [
     {
+      "name": "Stock Price Forecaster",
+      "date": "September 2025",
+      "description": [
+        "Engineered LSTM neural network predicting stock price movements with 89\\% directional accuracy across S\\&P 500 equities",
+        "Developed multi-model ensemble combining Random Forest risk assessment with neural network forecasting, outperforming buy-and-hold strategy by 23\\%",
+        "Built interactive trading dashboard with backtesting capabilities and live performance tracking"
+      ],
+      "stack": [
+        "Python",
+        "TensorFlow",
+        "Scikit-learn",
+        "Streamlit",
+        "YahooFinance API"
+      ]
+    },
+    {
+      "name": "Kakfa Transaction Handler",
+      "date": "June 2025",
+      "description": [
+        "Completed virtual experience developing transaction handling system by JP Morgan",
+        "Engineered perspective-based data visualization system processing live market feeds with sub-100ms latency",
+        "Achieved perfect score across all modules with certification in financial software engineering best practices"
+      ],
+      "stack": [
+        "Java",
+        "Spring Boot",
+        "REST API",
+        "JUnit"
+      ]
+    },
+    {
       "name": "Smart Study Assistant",
       "date": "Nov 2025 -- Present",
       "description": [
-        "Founded an AI-powered study platform delivering notes and quizzes via machine learning models.",
-        "Automated lecture content retrieval, transcription, and summarization using Panopto, reducing manual effort by 80%.",
-        "Built a scalable, responsive React/TypeScript frontend for optimal user experience."
+        "Founded an \\textbf{AI-powered study platform",
+        "Automated lecture content retrieval, transcription, and summarization using \\textbf{Panopto",
+        "Built a scalable, responsive \\textbf{React/TypeScript"
       ],
       "stack": [
         "JavaScript",
@@ -61,96 +91,6 @@
         "Node.js",
         "Panopto"
       ]
-    },
-    {
-      "name": "JP Morgan Software Engineering Simulation",
-      "date": "June 2025",
-      "description": [
-        "Developed a backend transaction system simulating real-world banking operations including fraud detection.",
-        "Implemented unit/integration tests and logging to improve system reliability."
-      ],
-      "stack": [
-        "Java",
-        "Spring Boot"
-      ]
-    },
-    {
-      "name": "PedalPro",
-      "date": "Nov 2025",
-      "description": [
-        "Web application project"
-      ],
-      "stack": [
-        "HTML"
-      ],
-      "link": "https://github.com/nanda-kumudhan/PedalPro"
-    },
-    {
-      "name": "first-contributions",
-      "date": "Oct 2025",
-      "description": [
-        "Help beginners to contribute to open source projects"
-      ],
-      "stack": [
-        "JavaScript"
-      ],
-      "link": "https://github.com/nanda-kumudhan/first-contributions"
-    },
-    {
-      "name": "ENT-Care-Hub",
-      "date": "Oct 2025",
-      "description": [
-        "ENT care management system"
-      ],
-      "stack": [
-        "PHP"
-      ],
-      "link": "https://github.com/nanda-kumudhan/ENT-Care-Hub"
-    },
-    {
-      "name": "Music-Store-Rental-Management-System",
-      "date": "Oct 2025",
-      "description": [
-        "Programming and Databases (Python CW)"
-      ],
-      "stack": [
-        "Python",
-        "Jupyter"
-      ],
-      "link": "https://github.com/nanda-kumudhan/Music-Store-Rental-Management-System"
-    },
-    {
-      "name": "Payroll-management-system",
-      "date": "Oct 2025",
-      "description": [
-        "Payroll management system"
-      ],
-      "stack": [
-        "C++"
-      ],
-      "link": "https://github.com/nanda-kumudhan/Payroll-management-system"
-    },
-    {
-      "name": "Performance-Hall",
-      "date": "Sept 2025",
-      "description": [
-        "Java OOP project"
-      ],
-      "stack": [
-        "Java"
-      ],
-      "link": "https://github.com/nanda-kumudhan/Performance-Hall"
-    },
-    {
-      "name": "forage-midas",
-      "date": "Aug 2025",
-      "description": [
-        "Project repo for the JPMC Advanced Software Engineering Forage program"
-      ],
-      "stack": [
-        "Java"
-      ],
-      "link": "https://github.com/nanda-kumudhan/forage-midas"
     }
   ],
   "skills": {
