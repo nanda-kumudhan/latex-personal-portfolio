@@ -15,11 +15,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     
-    if (savedTheme) {
-      setAppearance(savedTheme);
-    } else {
-      setAppearance(prefersDark ? 'dark' : 'light');
-    }
+    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+    setAppearance(theme);
+    
+    // Apply theme to HTML element for CSS
+    document.documentElement.setAttribute('data-theme', theme);
     
     setMounted(true);
   }, []);
@@ -28,6 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const newAppearance = appearance === 'dark' ? 'light' : 'dark';
     setAppearance(newAppearance);
     localStorage.setItem('theme', newAppearance);
+    document.documentElement.setAttribute('data-theme', newAppearance);
   };
 
   // Provide theme toggle through window object for component access

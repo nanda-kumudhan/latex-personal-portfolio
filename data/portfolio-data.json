@@ -4,20 +4,19 @@
       "institution": "Loughborough University",
       "location": "Loughborough, UK",
       "qualification": "BSc Computer Science and Artificial Intelligence",
-      "duration": "Sept 2024 -- June 2027",
+      "duration": "Sept 2024 – June 2027",
       "details": [
-        "Year 1: 2:1",
-        "Key modules: Data Structures \\& Algorithms, Embedded Systems Programming, Software Engineering, Operating Systems, Networks",
-        "Full-stack PHP/JS Healthcare Portal — 89\\%"
+        "Key modules: Data Structures & Algorithms, Embedded Systems Programming, Software Engineering, Operating Systems, Networks",
+        "Full-stack PHP/JS Healthcare Portal — 89%"
       ]
     },
     {
       "institution": "West Bridgford School",
       "location": "Nottingham, UK",
       "qualification": "A Levels (120 UCAS Points)",
-      "duration": "2022 -- 2024",
+      "duration": "2022 – 2024",
       "details": [
-        "Flask E-commerce Bike Sales Web App — 100\\%"
+        "Flask E-commerce Bike Sales Web App — 100%"
       ]
     }
   ],
@@ -25,22 +24,22 @@
     {
       "role": "Software Developer (Freelance)",
       "company": "Remote/Chennai, IN",
-      "duration": "July 2025 -- August 2025",
+      "duration": "July 2025 – August 2025",
       "description": [
-        "Designed and implemented a full-stack inventory and sales dashboard using \\textbf{Python, JavaScript, TypeScript, Flask, Chart.js",
-        "Automated invoice generation, stock alerts, and sales summaries, saving \\textbf{30+ hours/month",
-        "Integrated a \\textbf{PostgreSQL",
-        "Developed interactive charts and visualizations to track sales trends, inventory levels, and customer orders, improving accuracy by \\textbf{25\\%",
-        "Managed deployment, version control (\\textbf{Git"
+        "Designed and implemented a full-stack inventory and sales dashboard using Python, JavaScript, TypeScript, Flask, Chart.js, enabling real-time reporting and increasing decision-making speed by 60%.",
+        "Automated invoice generation, stock alerts, and sales summaries, saving 30+ hours/month of manual work.",
+        "Integrated a PostgreSQL database with optimized queries, reducing data retrieval time by 50%.",
+        "Developed interactive charts and visualizations to track sales trends, inventory levels, and customer orders, improving accuracy by 25%.",
+        "Managed deployment, version control (Git), and incremental updates, achieving downtime of <1%."
       ]
     },
     {
       "role": "Front-of-House Receptionist",
       "company": "Indian Restaurant, Nottingham, UK",
-      "duration": "Jun 2022 -- Sep 2024",
+      "duration": "Jun 2022 – Sep 2024",
       "description": [
-        "Managed bookings, reservations, and customer interactions efficiently, improving customer satisfaction by \\textbf{20\\%",
-        "Assisted in POS operations and reporting tasks, reducing errors by \\textbf{15\\%"
+        "Managed bookings, reservations, and customer interactions efficiently, improving customer satisfaction by 20%.",
+        "Assisted in POS operations and reporting tasks, reducing errors by 15%."
       ]
     }
   ],
@@ -49,8 +48,8 @@
       "name": "Stock Price Forecaster",
       "date": "September 2025",
       "description": [
-        "Engineered LSTM neural network predicting stock price movements with 89\\% directional accuracy across S\\&P 500 equities",
-        "Developed multi-model ensemble combining Random Forest risk assessment with neural network forecasting, outperforming buy-and-hold strategy by 23\\%",
+        "Engineered LSTM neural network predicting stock price movements with 89% directional accuracy across S&P 500 equities",
+        "Developed multi-model ensemble combining Random Forest risk assessment with neural network forecasting, outperforming buy-and-hold strategy by 23%",
         "Built interactive trading dashboard with backtesting capabilities and live performance tracking"
       ],
       "stack": [
@@ -78,11 +77,11 @@
     },
     {
       "name": "Smart Study Assistant",
-      "date": "Nov 2025 -- Present",
+      "date": "Nov 2025 – Present",
       "description": [
-        "Founded an \\textbf{AI-powered study platform",
-        "Automated lecture content retrieval, transcription, and summarization using \\textbf{Panopto",
-        "Built a scalable, responsive \\textbf{React/TypeScript"
+        "Founded an AI-powered study platform delivering notes and quizzes via Hugging Face models, increasing user engagement by 50%.",
+        "Automated lecture content retrieval, transcription, and summarization using Panopto, reducing manual effort by 80%.",
+        "Built a scalable, responsive React/TypeScript frontend, improving platform speed and user experience by 35%."
       ],
       "stack": [
         "JavaScript",

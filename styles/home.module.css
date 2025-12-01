@@ -7,6 +7,11 @@
   padding: 6rem 1rem 2rem;
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
   scroll-padding-top: 100px;
+  transition: background 0.3s ease;
+}
+
+html[data-theme="light"] .mainContainer {
+  background: linear-gradient(to right, #e8ecf1, #f0f5fa, #e5eef7);
 }
 
 /* Animations */
