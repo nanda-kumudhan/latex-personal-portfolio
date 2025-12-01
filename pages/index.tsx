@@ -21,7 +21,7 @@ import styles from "../styles/home.module.css";
 
 const Home = () => {
   const data = portfolioData as Partial<PortfolioData>;
-  const { education = [], experience = [], projects = [], skills = { languages: [], frameworksAndLibraries: [], developerToolsAndPlatforms: [] } } = data;
+  const { education = [], experience = [], projects = [], skills = { languages: [], frameworks: [], developerTools: [], libraries: [] } } = data;
 
   // Log component mount and data
   if (typeof window !== 'undefined') {
@@ -30,7 +30,7 @@ const Home = () => {
     console.log(`  - Education: ${education.length} entries`);
     console.log(`  - Experience: ${experience.length} entries`);
     console.log(`  - Projects: ${projects.length} entries`);
-    console.log(`  - Skills: ${skills.languages.length + skills.frameworksAndLibraries.length + skills.developerToolsAndPlatforms.length} total`);
+    console.log(`  - Skills: ${skills.languages.length + skills.frameworks.length + skills.developerTools.length + skills.libraries.length} total`);
   }
 
   return (
@@ -251,10 +251,10 @@ const Home = () => {
 
               <Box>
                 <Heading as="h3" size="5" className={styles.skillsCategory}>
-                  Frameworks & Libraries
+                  Frameworks
                 </Heading>
                 <Flex gap="3" wrap="wrap">
-                  {skills.frameworksAndLibraries.map((skill, index) => (
+                  {skills.frameworks.map((skill, index) => (
                     <Badge key={index} className={styles.skillBadge}>
                       {skill}
                     </Badge>
@@ -264,10 +264,10 @@ const Home = () => {
 
               <Box>
                 <Heading as="h3" size="5" className={styles.skillsCategory}>
-                  Developer Tools & Platforms
+                  Developer Tools
                 </Heading>
                 <Flex gap="3" wrap="wrap">
-                  {skills.developerToolsAndPlatforms.map((skill, index) => (
+                  {skills.developerTools.map((skill, index) => (
                     <Badge key={index} className={styles.skillBadge}>
                       {skill}
                     </Badge>
@@ -275,6 +275,18 @@ const Home = () => {
                 </Flex>
               </Box>
 
+              <Box>
+                <Heading as="h3" size="5" className={styles.skillsCategory}>
+                  Libraries
+                </Heading>
+                <Flex gap="3" wrap="wrap">
+                  {skills.libraries.map((skill, index) => (
+                    <Badge key={index} className={styles.skillBadge}>
+                      {skill}
+                    </Badge>
+                  ))}
+                </Flex>
+              </Box>
             </Grid>
           </Box>
 
